@@ -1,17 +1,1 @@
-header=$(head -n 1 "$1")
-
-case "$header" in
-  Merge\ * | Revert\ \"*) exit 0 ;;
-esac
-
-pattern='^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\(us-[0-9]{2}\): .+'
-
-if ! printf '%s' "$header" | grep -Eq "$pattern" || [ "${#header}" -gt 100 ]; then
-  echo "✖ Invalid commit message: \"$header\""
-  echo ""
-  echo "  Format:   type(us-NN): mensaje        (maximum 100 characters)"
-  echo "  Types:    feat, fix, chore, docs, style, refactor, perf, test, build, ci, revert"
-  echo "  Example:  feat(us-01): add the minimal home page"
-  exit 1
-fi
-
+pnpm exec commitlint --edit "$1"
