@@ -19,7 +19,8 @@
 
 ## Verification
 
-- [ ] `pnpm verify` passes locally (`pnpm lint && pnpm typecheck && pnpm build` until US-02)
+- [ ] `pnpm verify` passes locally (`pnpm lint && pnpm typecheck && pnpm build`
+      until US-02)
 - [ ] The `ci` check is green
 - [ ] The story's scenarios are covered (tests or manual verification)
 - [ ] Checked at 360 px and 1280 px, in light and dark theme (if there is UI)
