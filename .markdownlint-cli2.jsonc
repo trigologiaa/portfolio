@@ -1,0 +1,8 @@
+{
+  "config": {
+    "MD033": false,
+    "MD041": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", ".next", "user-stories"]
+}
