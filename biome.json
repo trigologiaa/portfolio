@@ -33,6 +33,8 @@
     "rules": {
       "recommended": true,
       "nursery": {
+        "noUnnecessaryConditions": "error",
+        "useExhaustiveSwitchCases": "error",
         "useExplicitType": "error"
       },
       "suspicious": {
