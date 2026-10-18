@@ -31,6 +31,9 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "error"
+      },
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedVariables": "error"
