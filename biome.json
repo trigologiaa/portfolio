@@ -47,6 +47,7 @@
       "style": {
         "noNonNullAssertion": "error",
         "useExportType": "error",
+        "useFilenamingConvention": "error",
         "useImportType": "error",
         "useNamingConvention": "error"
       }
