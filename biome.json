@@ -33,6 +33,8 @@
     "rules": {
       "recommended": true,
       "nursery": {
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error",
         "noUnnecessaryConditions": "error",
         "useExhaustiveSwitchCases": "error",
         "useExplicitType": "error"
