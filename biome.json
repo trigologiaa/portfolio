@@ -36,7 +36,8 @@
         "useExplicitType": "error"
       },
       "suspicious": {
-        "noExplicitAny": "error"
+        "noExplicitAny": "error",
+        "noTsIgnore": "error"
       },
       "style": {
         "noNonNullAssertion": "error",
