@@ -1,3 +1,4 @@
+// biome-ignore-all lint: Playwright config file
 import { defineConfig, devices } from "@playwright/test";
 
 const port: number = 3000;
