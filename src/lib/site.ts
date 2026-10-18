@@ -3,6 +3,8 @@ export const siteConfig = {
   description: "Personal portfolio",
 } as const;
 
-export function formatPageTitle(_title?: string): string {
-  return `${siteConfig.name} - Portfolio`;
+export function formatPageTitle(title?: string): string {
+  return title
+    ? `${title} | ${siteConfig.name}`
+    : `${siteConfig.name} - Portfolio`;
 }
