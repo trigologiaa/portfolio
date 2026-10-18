@@ -46,6 +46,12 @@
       },
       "style": {
         "noNonNullAssertion": "error",
+        "useConsistentMemberAccessibility": {
+          "level": "error",
+          "options": {
+            "accessibility": "explicit"
+          }
+        },
         "useExportType": "error",
         "useFilenamingConvention": "error",
         "useImportType": "error",
