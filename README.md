@@ -13,13 +13,19 @@ Personal portfolio (Next.js + TypeScript). Production:
   (for example `feat(us-01): add the minimal home page`). A Husky hook enforces
   it.
 
-## Development
+## Scripts
 
-```sh
-pnpm install   # also installs the Git hooks (Husky)
-pnpm dev
-pnpm lint      # Biome (lint + format)
-```
+| Script                           | What it does                                                             |
+| -------------------------------- | ------------------------------------------------------------------------ |
+| `pnpm dev`                       | Development server                                                       |
+| `pnpm build` / `pnpm start`      | Production build and server                                              |
+| `pnpm lint`                      | Biome (code) + markdownlint and Prettier (Markdown)                      |
+| `pnpm lint:fix`                  | Applies the automatic fixes of all of them                               |
+| `pnpm typecheck`                 | Type check (`next typegen` + `tsc --noEmit`)                             |
+| `pnpm format` / `pnpm format:md` | Code formatting (Biome) / Markdown formatting (Prettier)                 |
+| `pnpm test` / `pnpm test:run`    | Vitest (watch mode / single run)                                         |
+| `pnpm test:e2e`                  | Playwright against the production build                                  |
+| `pnpm verify`                    | Lint/format + types + tests + build (same as CI and the `pre-push` hook) |
 
 ## Git hooks (Husky)
 
