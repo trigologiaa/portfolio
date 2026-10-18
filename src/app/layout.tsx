@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
+import type { NextFontWithVariable } from "next/dist/compiled/@next/font";
+import type { JSX } from "react/jsx-runtime";
 import { formatPageTitle, siteConfig } from "@/lib/site";
 
-const geistSans = Geist({
+const geistSans: NextFontWithVariable = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono: NextFontWithVariable = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -18,7 +20,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: LayoutProps<"/">): JSX.Element {
   return (
     <html
       lang="en"
