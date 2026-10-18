@@ -48,6 +48,7 @@
         "noEnum": "error",
         "noMagicNumbers": "error",
         "noNamespace": "error",
+        "noNestedTernary": "error",
         "noNonNullAssertion": "error",
         "noParameterProperties": "error",
         "useBlockStatements": "error",
