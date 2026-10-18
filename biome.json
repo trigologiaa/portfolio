@@ -39,7 +39,9 @@
         "noExplicitAny": "error"
       },
       "style": {
-        "noNonNullAssertion": "error"
+        "noNonNullAssertion": "error",
+        "useExportType": "error",
+        "useImportType": "error"
       }
     },
     "domains": {
