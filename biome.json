@@ -45,6 +45,7 @@
         "useAwait": "error"
       },
       "style": {
+        "noEnum": "error",
         "noNonNullAssertion": "error",
         "noParameterProperties": "error",
         "useConsistentArrayType": {
