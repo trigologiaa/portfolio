@@ -50,6 +50,7 @@
         "noNamespace": "error",
         "noNestedTernary": "error",
         "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
         "noParameterProperties": "error",
         "useBlockStatements": "error",
         "useConsistentArrayType": {
@@ -70,6 +71,7 @@
             "style": "interface"
           }
         },
+        "useConst": "error",
         "useDefaultSwitchClause": "error",
         "useExportType": "error",
         "useFilenamingConvention": "error",
