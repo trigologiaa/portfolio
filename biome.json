@@ -37,6 +37,9 @@
       },
       "suspicious": {
         "noExplicitAny": "error"
+      },
+      "style": {
+        "noNonNullAssertion": "error"
       }
     },
     "domains": {
