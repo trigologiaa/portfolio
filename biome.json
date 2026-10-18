@@ -35,6 +35,7 @@
       "nursery": {
         "noFloatingPromises": "error",
         "noMisusedPromises": "error",
+        "noShadow": "error",
         "noUnnecessaryConditions": "error",
         "useExhaustiveSwitchCases": "error",
         "useExplicitType": "error"
