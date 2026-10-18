@@ -31,7 +31,9 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error"
+      },
       "nursery": {
         "noFloatingPromises": "error",
         "noMisusedPromises": "error",
@@ -40,11 +42,7 @@
         "useExhaustiveSwitchCases": "error",
         "useExplicitType": "error"
       },
-      "suspicious": {
-        "noExplicitAny": "error",
-        "noTsIgnore": "error",
-        "useAwait": "error"
-      },
+      "recommended": true,
       "style": {
         "noEnum": "error",
         "noMagicNumbers": "error",
@@ -80,6 +78,11 @@
         "useNamingConvention": "error",
         "useReadonlyClassProperties": "error",
         "useTemplate": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "error",
+        "noTsIgnore": "error",
+        "useAwait": "error"
       }
     },
     "domains": {
