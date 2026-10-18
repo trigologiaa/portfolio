@@ -47,6 +47,12 @@
       "style": {
         "noNonNullAssertion": "error",
         "noParameterProperties": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
         "useConsistentMemberAccessibility": {
           "level": "error",
           "options": {
