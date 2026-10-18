@@ -59,6 +59,12 @@
             "accessibility": "explicit"
           }
         },
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "interface"
+          }
+        },
         "useExportType": "error",
         "useFilenamingConvention": "error",
         "useImportType": "error",
