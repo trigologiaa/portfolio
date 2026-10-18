@@ -77,7 +77,8 @@
         "useFilenamingConvention": "error",
         "useImportType": "error",
         "useNamingConvention": "error",
-        "useReadonlyClassProperties": "error"
+        "useReadonlyClassProperties": "error",
+        "useTemplate": "error"
       }
     },
     "domains": {
