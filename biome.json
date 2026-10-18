@@ -7,7 +7,16 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!playwright-report",
+      "!test-results",
+      "!user-stories"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -22,7 +31,63 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error",
+        "noShadow": "error",
+        "noUnnecessaryConditions": "error",
+        "useExhaustiveSwitchCases": "error",
+        "useExplicitType": "error"
+      },
+      "recommended": true,
+      "style": {
+        "noEnum": "error",
+        "noMagicNumbers": "error",
+        "noNamespace": "error",
+        "noNestedTernary": "error",
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noParameterProperties": "error",
+        "useBlockStatements": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useConsistentMemberAccessibility": {
+          "level": "error",
+          "options": {
+            "accessibility": "explicit"
+          }
+        },
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "interface"
+          }
+        },
+        "useConst": "error",
+        "useDefaultSwitchClause": "error",
+        "useExportType": "error",
+        "useFilenamingConvention": "error",
+        "useImportType": "error",
+        "useNamingConvention": "error",
+        "useReadonlyClassProperties": "error",
+        "useTemplate": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "error",
+        "noTsIgnore": "error",
+        "useAwait": "error"
+      }
     },
     "domains": {
       "next": "recommended",
