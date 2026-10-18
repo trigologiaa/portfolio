@@ -32,6 +32,7 @@
     "enabled": true,
     "rules": {
       "correctness": {
+        "noUnusedImports": "error",
         "noUnusedVariables": "error"
       },
       "nursery": {
