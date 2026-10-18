@@ -49,6 +49,7 @@
         "noNamespace": "error",
         "noNonNullAssertion": "error",
         "noParameterProperties": "error",
+        "useBlockStatements": "error",
         "useConsistentArrayType": {
           "level": "error",
           "options": {
