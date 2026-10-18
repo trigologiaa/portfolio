@@ -4,7 +4,7 @@ export const siteConfig = {
 } as const;
 
 export function formatPageTitle(title?: string): string {
-  return title
-    ? `${title} | ${siteConfig.name}`
+  return title?.trim()
+    ? `${title.trim()} | ${siteConfig.name}`
     : `${siteConfig.name} - Portfolio`;
 }

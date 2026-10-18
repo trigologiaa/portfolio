@@ -9,4 +9,8 @@ describe("formatPageTitle", (): void => {
   it("prefixes the page title to the site name", (): void => {
     expect(formatPageTitle("Projects")).toBe(`Projects | ${siteConfig.name}`);
   });
+
+  it("falls back to the default title when the page title is blank", (): void => {
+    expect(formatPageTitle("   ")).toBe(`${siteConfig.name} - Portfolio`);
+  });
 });
