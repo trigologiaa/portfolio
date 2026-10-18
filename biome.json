@@ -55,7 +55,8 @@
         "useExportType": "error",
         "useFilenamingConvention": "error",
         "useImportType": "error",
-        "useNamingConvention": "error"
+        "useNamingConvention": "error",
+        "useReadonlyClassProperties": "error"
       }
     },
     "domains": {
