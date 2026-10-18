@@ -1,3 +1,4 @@
+// biome-ignore-all lint: Playwright config file
 const usScope = {
   rules: {
     "us-scope": ({ scope }) => [
