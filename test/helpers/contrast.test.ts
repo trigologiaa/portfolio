@@ -15,28 +15,28 @@ describe("contrastRatio", (): void => {
     );
   });
 
-  it("is 1 for the same color", () => {
+  it("is 1 for the same color", (): void => {
     expect(contrastRatio("#336699", "#336699")).toBeCloseTo(
       minContrastRatio,
       highPrecision,
     );
   });
 
-  it("does not depend on the order of the colors", () => {
+  it("does not depend on the order of the colors", (): void => {
     expect(contrastRatio("#767676", "#ffffff")).toBeCloseTo(
       contrastRatio("#ffffff", "#767676"),
       highPrecision,
     );
   });
 
-  it("matches the known WCAG value for #767676 on white (4.54)", () => {
+  it("matches the known WCAG value for #767676 on white (4.54)", (): void => {
     expect(contrastRatio("#767676", "#ffffff")).toBeCloseTo(
       knownWcagContrast,
       lowPrecision,
     );
   });
 
-  it("accepts 3-digit hex colors", () => {
+  it("accepts 3-digit hex colors", (): void => {
     expect(contrastRatio("#000", "#fff")).toBeCloseTo(
       maxContrastRatio,
       lowPrecision,
