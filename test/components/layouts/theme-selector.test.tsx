@@ -3,8 +3,14 @@ import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { ThemeSelector } from "@/components/layout/theme-selector";
 import { ThemeProvider } from "@/components/theme-provider";
+import type { Flavor } from "@/lib/theme";
 
-const labels = {
+interface ThemeLabels {
+  group: string;
+  options: Record<Flavor, string>;
+}
+
+const labels: ThemeLabels = {
   group: "Theme",
   options: {
     latte: "Latte (light)",
