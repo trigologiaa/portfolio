@@ -3,7 +3,7 @@
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 
 const OBSERVER_OPTIONS: IntersectionObserverInit = {
-  rootMargin: "-40% 0px -55% 0px",
+  rootMargin: "-10% 0px -80% 0px",
 };
 
 function getTargetElements(joinedIds: string): HTMLElement[] {
