@@ -1,10 +1,9 @@
-// @vitest-environment jsdom
-
 import { act, type RenderResult, render, screen } from "@testing-library/react";
 import type { JSX } from "react/jsx-runtime";
 import { describe, expect, it } from "vitest";
 import { useActiveSection } from "@/hooks/use-active-section";
-import { MockIntersectionObserver } from "../helpers/mock-intersection-observer";
+import type { MockIntersectionObserver } from "../helpers/mock-intersection-observer";
+import { getLatestObserver, getSection } from "../helpers/observer-dom";
 
 function Probe(): JSX.Element {
   const active: string | null = useActiveSection(["about", "stack"]);
@@ -16,23 +15,6 @@ function renderWithSections(): RenderResult {
   return render(<Probe />);
 }
 
-function getSection(id: string): HTMLElement {
-  const section: HTMLElement | null = document.getElementById(id);
-  if (section === null) {
-    throw new Error(`Missing section: ${id}`);
-  }
-  return section;
-}
-
-function getObserver(): MockIntersectionObserver {
-  const observer: MockIntersectionObserver | undefined =
-    MockIntersectionObserver.instances[0];
-  if (observer === undefined) {
-    throw new Error("No IntersectionObserver was created");
-  }
-  return observer;
-}
-
 describe("useActiveSection", (): void => {
   it("starts without an active section", (): void => {
     renderWithSections();
@@ -41,14 +23,14 @@ describe("useActiveSection", (): void => {
 
   it("marks the section that enters the viewport as active", (): void => {
     renderWithSections();
-    const observer: MockIntersectionObserver = getObserver();
+    const observer: MockIntersectionObserver = getLatestObserver();
     act((): void => observer.trigger(getSection("stack"), true));
     expect(screen.getByText("active: stack")).toBeInTheDocument();
   });
 
   it("clears the active section when it leaves the viewport", (): void => {
     renderWithSections();
-    const observer: MockIntersectionObserver = getObserver();
+    const observer: MockIntersectionObserver = getLatestObserver();
     const about: HTMLElement = getSection("about");
     act((): void => observer.trigger(about, true));
     act((): void => observer.trigger(about, false));
