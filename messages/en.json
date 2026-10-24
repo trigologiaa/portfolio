@@ -9,5 +9,32 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist.",
     "back": "Back to the home page"
+  },
+  "Nav": {
+    "projects": "Projects",
+    "about": "About",
+    "stack": "Stack",
+    "experience": "Experience",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "main": "Main navigation"
+  },
+  "Theme": {
+    "group": "Theme",
+    "options": {
+      "latte": "Latte (light)",
+      "frappe": "Frappé (dark)",
+      "macchiato": "Macchiato (darker)",
+      "mocha": "Mocha (darkest)"
+    }
+  },
+  "Common": {
+    "skipToContent": "Skip to content"
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "social": "Social links"
   }
 }

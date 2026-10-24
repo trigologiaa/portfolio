@@ -4,6 +4,8 @@ import { afterEach, beforeEach, vi } from "vitest";
 
 const originalConsoleError: typeof console.error = console.error;
 
+const hasDom: boolean = typeof window !== "undefined";
+
 beforeEach((): void => {
   vi.spyOn(console, "error").mockImplementation((...args: unknown[]): void => {
     if (String(args[0]).includes("Encountered a script tag")) {
@@ -11,6 +13,9 @@ beforeEach((): void => {
     }
     originalConsoleError(...args);
   });
+  if (!hasDom) {
+    return;
+  }
   Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: (query: string) => ({
@@ -36,8 +41,11 @@ beforeEach((): void => {
 });
 
 afterEach((): void => {
-  cleanup();
   vi.restoreAllMocks();
+  if (!hasDom) {
+    return;
+  }
+  cleanup();
   localStorage.clear();
   document.documentElement.className = "";
   document.documentElement.removeAttribute("data-theme");

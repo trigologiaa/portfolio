@@ -9,5 +9,32 @@
     "title": "Página no encontrada",
     "description": "La página que buscás no existe.",
     "back": "Volver al inicio"
+  },
+  "Nav": {
+    "projects": "Proyectos",
+    "about": "Sobre mí",
+    "stack": "Stack",
+    "experience": "Experiencia",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "main": "Navegación principal"
+  },
+  "Theme": {
+    "group": "Tema",
+    "options": {
+      "latte": "Latte (claro)",
+      "frappe": "Frappé (oscuro)",
+      "macchiato": "Macchiato (más oscuro)",
+      "mocha": "Mocha (el más oscuro)"
+    }
+  },
+  "Common": {
+    "skipToContent": "Saltar al contenido"
+  },
+  "Footer": {
+    "rights": "Todos los derechos reservados.",
+    "social": "Redes"
   }
 }
