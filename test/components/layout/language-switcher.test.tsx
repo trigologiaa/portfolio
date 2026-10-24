@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { renderWithProviders } from "../../render-with-providers";
@@ -33,5 +34,29 @@ describe("LanguageSwitcher", (): void => {
       "lang",
       "es",
     );
+  });
+
+  it("marks the current language as pressed", (): void => {
+    renderWithProviders(<LanguageSwitcher />, { locale: "es" });
+    expect(screen.getByRole("button", { name: "Español" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(screen.getByRole("button", { name: "English" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+  });
+
+  it("switches language keeping the current page", async (): Promise<void> => {
+    const user: UserEvent = userEvent.setup();
+    renderWithProviders(<LanguageSwitcher />);
+    await user.click(screen.getByRole("button", { name: "Español" }));
+    expect(replace).toHaveBeenCalledWith("/projects", { locale: "es" });
+  });
+
+  it("translates its label", (): void => {
+    renderWithProviders(<LanguageSwitcher />, { locale: "es" });
+    expect(screen.getByRole("group", { name: "Idioma" })).toBeInTheDocument();
   });
 });
