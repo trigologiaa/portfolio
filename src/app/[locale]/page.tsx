@@ -1,29 +1,21 @@
 import { getTranslations } from "next-intl/server";
-import type React from "react";
-import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { ThemeSelector } from "@/components/layout/theme-selector";
+import { navItems } from "@/config/nav";
 import { siteConfig } from "@/lib/site";
 
 export default async function Home(): Promise<React.JSX.Element> {
-  const t = await getTranslations("Home");
+  const nav = await getTranslations("Nav");
+  const home = await getTranslations("Home");
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6">
-      <h1 className="text-4xl font-bold">{siteConfig.name}</h1>
-      <p className="text-muted-foreground">{t("tagline")}</p>
-      <div className="flex items-center gap-4">
-        <LanguageSwitcher />
-        <ThemeSelector
-          labels={{
-            group: "Theme",
-            options: {
-              latte: "Latte (light)",
-              frappe: "Frappé (dark)",
-              macchiato: "Macchiato (darker)",
-              mocha: "Mocha (darkest)",
-            },
-          }}
-        />
-      </div>
+    <main id="content" className="mx-auto max-w-5xl px-4">
+      <section className="flex min-h-[60vh] flex-col justify-center gap-4 py-16">
+        <h1 className="text-4xl font-bold">{siteConfig.name}</h1>
+        <p className="text-muted-foreground">{home("tagline")}</p>
+      </section>
+      {navItems.map(({ id }) => (
+        <section key={id} id={id} className="scroll-mt-20 py-24">
+          <h2 className="text-2xl font-semibold">{nav(id)}</h2>
+        </section>
+      ))}
     </main>
   );
 }

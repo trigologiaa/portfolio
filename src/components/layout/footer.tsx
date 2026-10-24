@@ -12,10 +12,7 @@ interface FooterProps {
   links?: FooterLink[];
 }
 
-export function Footer({
-  year = new Date().getFullYear(),
-  links = [],
-}: FooterProps): ReactElement {
+export function Footer({ year, links = [] }: FooterProps): ReactElement {
   const t: ReturnType<typeof useTranslations<"Footer">> =
     useTranslations("Footer");
   return (

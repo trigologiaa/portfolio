@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type ReactElement, useState } from "react";
