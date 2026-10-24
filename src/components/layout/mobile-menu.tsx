@@ -13,7 +13,7 @@ import {
 import { NavLinks } from "./nav-links";
 
 export function MobileMenu(): ReactElement {
-  const t = useTranslations("Nav");
+  const t: ReturnType<typeof useTranslations<"Nav">> = useTranslations("Nav");
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>

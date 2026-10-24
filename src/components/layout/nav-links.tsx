@@ -20,7 +20,7 @@ export function NavLinks({
   className,
   onNavigate,
 }: NavLinksProps): ReactElement {
-  const t = useTranslations("Nav");
+  const t: ReturnType<typeof useTranslations<"Nav">> = useTranslations("Nav");
   const active = useActiveSection(sectionIds);
   return (
     <nav aria-label={t("main")} className={className}>
