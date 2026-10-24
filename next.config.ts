@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+type WithNextIntl = ReturnType<typeof createNextIntlPlugin>;
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,
@@ -14,5 +16,6 @@ const nextConfig: NextConfig = {
     },
   },
 };
+const withNextIntl: WithNextIntl = createNextIntlPlugin();
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
