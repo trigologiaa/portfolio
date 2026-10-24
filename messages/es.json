@@ -1,0 +1,13 @@
+{
+  "Home": {
+    "tagline": "Bienvenido a mi portfolio"
+  },
+  "Language": {
+    "label": "Idioma"
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscás no existe.",
+    "back": "Volver al inicio"
+  }
+}
