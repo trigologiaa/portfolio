@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, vi } from "vitest";
+import { MockIntersectionObserver } from "./helpers/mock-intersection-observer";
 
 const originalConsoleError: typeof console.error = console.error;
 
@@ -22,22 +23,19 @@ beforeEach((): void => {
       matches: false,
       media: query,
       onchange: null,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      addListener: () => {},
-      removeListener: () => {},
-      dispatchEvent: () => false,
+      addEventListener: (): void => {},
+      removeEventListener: (): void => {},
+      addListener: (): void => {},
+      removeListener: (): void => {},
+      dispatchEvent: (): boolean => false,
     }),
   });
-  globalThis.ResizeObserver ??= class {
-    public observe(): void {}
-    public unobserve(): void {}
-    public disconnect(): void {}
-  };
-  Element.prototype.hasPointerCapture ??= (): boolean => false;
-  Element.prototype.setPointerCapture ??= (): void => {};
-  Element.prototype.releasePointerCapture ??= (): void => {};
-  Element.prototype.scrollIntoView ??= (): void => {};
+  MockIntersectionObserver.clearInstances();
+  Object.defineProperty(window, "IntersectionObserver", {
+    writable: true,
+    configurable: true,
+    value: MockIntersectionObserver,
+  });
 });
 
 afterEach((): void => {
@@ -48,6 +46,5 @@ afterEach((): void => {
   cleanup();
   localStorage.clear();
   document.documentElement.className = "";
-  document.documentElement.removeAttribute("data-theme");
   document.documentElement.removeAttribute("style");
 });
