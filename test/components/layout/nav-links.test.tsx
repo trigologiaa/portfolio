@@ -20,7 +20,8 @@ function MockLink({ href, children, ...props }: MockLinkProps): JSX.Element {
   );
 }
 
-vi.mock("@/i18n/navigation", () => ({
+// biome-ignore lint/style/useNamingConvention: must match the real export name
+vi.mock("@/i18n/navigation", (): { Link: typeof MockLink } => ({
   // biome-ignore lint/style/useNamingConvention: must match the real export name
   Link: MockLink,
 }));
