@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import type { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import type { JSX } from "react/jsx-runtime";
+import { ThemeProvider } from "@/components/theme-provider";
 import { formatPageTitle, siteConfig } from "@/lib/site";
 
 const geistSans: NextFontWithVariable = Geist({
@@ -26,9 +27,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
