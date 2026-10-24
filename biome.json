@@ -94,6 +94,18 @@
       "react": "recommended"
     }
   },
+  "overrides": [
+    {
+      "includes": ["src/components/ui/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useExplicitType": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "actions": {
       "source": {
