@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "content:check": "tsx scripts/validate-content.ts",
     "dev": "next dev",
     "format": "biome format --write",
     "format:md": "prettier --write \"**/*.md\"",
@@ -17,7 +18,7 @@
     "test:run": "vitest run",
     "test:e2e": "playwright test",
     "typecheck": "next typegen && tsc --noEmit",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test:run && pnpm build"
+    "verify": "pnpm lint:fix && pnpm typecheck && pnpm content:check && pnpm test:run && pnpm build"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

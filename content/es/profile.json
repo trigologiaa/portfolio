@@ -1,0 +1,12 @@
+{
+  "name": "Gastón Ribero",
+  "headline": "Desarrollador full-stack",
+  "pitch": "TODO: una frase sobre lo que construís y el valor que aportás.",
+  "availability": "Disponible para nuevas oportunidades",
+  "email": "augusto.ribero.15@gmail.com",
+  "links": {
+    "github": "https://github.com/trigologiaa",
+    "linkedin": "https://www.linkedin.com/in/gastonaugustoribero"
+  },
+  "highlights": ["TODO: tu ciudad", "Español e inglés"]
+}

@@ -1,0 +1,48 @@
+{
+  "entries": [
+    {
+      "id": "degree",
+      "type": "education",
+      "title": "BSc in Computer Engineering",
+      "organization": "Universidad Nacional de Tres de Febrero (UNTREF)",
+      "start": "2024-03",
+      "description": "Ongoing degree in Computer Engineering."
+    },
+    {
+      "id": "talento-tech-python",
+      "type": "course",
+      "title": "Introduction to Programming with Python",
+      "organization": "Talento Tech",
+      "start": "2025-03",
+      "end": "2025-07",
+      "description": "First steps in programming with Python."
+    },
+    {
+      "id": "talento-tech-frontend-js",
+      "type": "course",
+      "title": "Front-End JS",
+      "organization": "Talento Tech",
+      "start": "2025-08",
+      "end": "2025-12",
+      "description": "Core front-end development: HTML, CSS and JavaScript."
+    },
+    {
+      "id": "talento-tech-backend-java",
+      "type": "course",
+      "title": "Back-End with Java",
+      "organization": "Talento Tech",
+      "start": "2026-03",
+      "end": "2026-07",
+      "description": "Back-end development with Java, where I learned Spring Boot."
+    },
+    {
+      "id": "talento-tech-react",
+      "type": "course",
+      "title": "React JS",
+      "organization": "Talento Tech",
+      "start": "2026-08",
+      "end": "2026-12",
+      "description": "Building user interfaces with React and JavaScript."
+    }
+  ]
+}

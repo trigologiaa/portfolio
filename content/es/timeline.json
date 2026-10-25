@@ -1,0 +1,48 @@
+{
+  "entries": [
+    {
+      "id": "degree",
+      "type": "education",
+      "title": "Ingeniería en Computación",
+      "organization": "Universidad Nacional de Tres de Febrero (UNTREF)",
+      "start": "2024-03",
+      "description": "Carrera de Ingeniería en Computación en curso."
+    },
+    {
+      "id": "talento-tech-python",
+      "type": "course",
+      "title": "Iniciación a la Programación con Python",
+      "organization": "Talento Tech",
+      "start": "2025-03",
+      "end": "2025-07",
+      "description": "Primeros pasos en programación con Python."
+    },
+    {
+      "id": "talento-tech-frontend-js",
+      "type": "course",
+      "title": "Front-End con JavaScript",
+      "organization": "Talento Tech",
+      "start": "2025-08",
+      "end": "2025-12",
+      "description": "Desarrollo front-end básico: HTML, CSS y JavaScript."
+    },
+    {
+      "id": "talento-tech-backend-java",
+      "type": "course",
+      "title": "Back-End con Java",
+      "organization": "Talento Tech",
+      "start": "2026-03",
+      "end": "2026-07",
+      "description": "Desarrollo back-end con Java, donde aprendí Spring Boot."
+    },
+    {
+      "id": "talento-tech-react",
+      "type": "course",
+      "title": "React JS",
+      "organization": "Talento Tech",
+      "start": "2026-08",
+      "end": "2026-12",
+      "description": "Construcción de interfaces de usuario con React y JavaScript."
+    }
+  ]
+}
