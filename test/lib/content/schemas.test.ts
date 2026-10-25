@@ -6,31 +6,11 @@ import {
   stackSchema,
   timelineSchema,
 } from "@/lib/content/schemas";
-
-interface ProfileLinks {
-  github: string;
-  linkedin: string;
-}
-
-interface ProfileInput {
-  name: string;
-  headline: string;
-  pitch: string;
-  email: string;
-  links: ProfileLinks;
-  highlights?: string[];
-}
-
-const validProfile: ProfileInput = {
-  name: "Ada Lovelace",
-  headline: "Full-stack developer",
-  pitch: "I build things for the web.",
-  email: "ada@example.com",
-  links: {
-    github: "https://github.com/ada",
-    linkedin: "https://www.linkedin.com/in/ada",
-  },
-};
+import {
+  validProfile,
+  validStack,
+  validTimelineEntry,
+} from "../../helpers/content-fixtures";
 
 describe("curationSchema", (): void => {
   it("has sensible defaults", (): void => {
@@ -65,8 +45,10 @@ describe("enrichmentSchema", (): void => {
 
 describe("profileSchema", (): void => {
   it("accepts a valid profile and defaults the highlights to an empty list", (): void => {
+    const { highlights, ...withoutHighlights } = validProfile;
+    void highlights;
     const profile: ReturnType<typeof profileSchema.parse> =
-      profileSchema.parse(validProfile);
+      profileSchema.parse(withoutHighlights);
     expect(profile.highlights).toEqual([]);
   });
 
@@ -87,36 +69,20 @@ describe("profileSchema", (): void => {
 });
 
 describe("stackSchema", (): void => {
-  const item = {
-    id: "react",
-    name: "React",
-    icon: "react",
-  };
-
   it("accepts categories with items", (): void => {
-    const stack = {
-      categories: [{ id: "frontend", name: "Frontend", items: [item] }],
-    };
-    expect(stackSchema.safeParse(stack).success).toBe(true);
+    expect(stackSchema.safeParse(validStack).success).toBe(true);
   });
 
   it("rejects a category without items", (): void => {
     const stack = {
-      categories: [{ id: "frontend", name: "Frontend", items: [] }],
+      categories: [{ ...validStack.categories[0], items: [] }],
     };
     expect(stackSchema.safeParse(stack).success).toBe(false);
   });
 });
 
 describe("timelineSchema", (): void => {
-  const entry = {
-    id: "uni",
-    type: "education",
-    title: "BSc in Computer Science",
-    organization: "University",
-    start: "2020-03",
-    description: "Studies.",
-  };
+  const entry = validTimelineEntry;
 
   it("accepts an ongoing entry (no end date)", (): void => {
     expect(timelineSchema.safeParse({ entries: [entry] }).success).toBe(true);
