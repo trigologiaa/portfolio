@@ -1,0 +1,343 @@
+{
+  "categories": [
+    {
+      "id": "languages",
+      "name": "Programming languages",
+      "items": [
+        {
+          "id": "java",
+          "name": "Java",
+          "icon": "java"
+        },
+        {
+          "id": "go",
+          "name": "Go",
+          "icon": "go"
+        },
+        {
+          "id": "c",
+          "name": "C",
+          "icon": "c"
+        },
+        {
+          "id": "python",
+          "name": "Python",
+          "icon": "python"
+        },
+        {
+          "id": "typescript",
+          "name": "TypeScript",
+          "icon": "typescript"
+        },
+        {
+          "id": "javascript",
+          "name": "JavaScript",
+          "icon": "javascript"
+        },
+        {
+          "id": "ruby",
+          "name": "Ruby",
+          "icon": "ruby"
+        },
+        {
+          "id": "vhdl",
+          "name": "VHDL",
+          "icon": "vhdl"
+        },
+        {
+          "id": "bash",
+          "name": "Bash",
+          "icon": "bash"
+        },
+        {
+          "id": "sql",
+          "name": "SQL",
+          "icon": "sql"
+        }
+      ]
+    },
+    {
+      "id": "fullstack",
+      "name": "Full-Stack",
+      "items": [
+        {
+          "id": "ruby-on-rails",
+          "name": "Ruby on Rails",
+          "icon": "ruby-on-rails"
+        },
+        {
+          "id": "nextjs",
+          "name": "Next.js",
+          "icon": "nextjs"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "items": [
+        {
+          "id": "springboot",
+          "name": "Spring Boot",
+          "icon": "springboot"
+        },
+        {
+          "id": "nodejs",
+          "name": "Node.js",
+          "icon": "nodejs"
+        },
+        {
+          "id": "express",
+          "name": "Express",
+          "icon": "express"
+        },
+        {
+          "id": "restful-apis",
+          "name": "RESTful APIs",
+          "icon": "restful-apis"
+        },
+        {
+          "id": "jwt",
+          "name": "JWT (JSON Web Tokens)",
+          "icon": "jwt"
+        }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "items": [
+        {
+          "id": "html",
+          "name": "HTML5",
+          "icon": "html"
+        },
+        {
+          "id": "css",
+          "name": "CSS3",
+          "icon": "css"
+        },
+        {
+          "id": "react",
+          "name": "React",
+          "icon": "react"
+        },
+        {
+          "id": "tailwind-css",
+          "name": "Tailwind CSS",
+          "icon": "tailwind-css"
+        },
+        {
+          "id": "vite",
+          "name": "Vite",
+          "icon": "vite"
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "name": "Database",
+      "items": [
+        {
+          "id": "postgresql",
+          "name": "PostgreSQL",
+          "icon": "postgresql"
+        },
+        {
+          "id": "mysql",
+          "name": "MySQL",
+          "icon": "mysql"
+        },
+        {
+          "id": "mariadb",
+          "name": "MariaDB",
+          "icon": "mariadb"
+        },
+        {
+          "id": "redis",
+          "name": "Redis",
+          "icon": "redis"
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "DevOps",
+      "items": [
+        {
+          "id": "docker",
+          "name": "Docker",
+          "icon": "docker"
+        },
+        {
+          "id": "linux",
+          "name": "Linux",
+          "icon": "linux"
+        },
+        {
+          "id": "git",
+          "name": "Git",
+          "icon": "git"
+        },
+        {
+          "id": "github-gitlab",
+          "name": "GitHub / GitLab",
+          "icon": "github-gitlab"
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "name": "Testing & quality",
+      "items": [
+        {
+          "id": "vitest",
+          "name": "Vitest",
+          "icon": "vitest"
+        },
+        {
+          "id": "junit",
+          "name": "JUnit",
+          "icon": "junit"
+        },
+        {
+          "id": "pytest",
+          "name": "pytest",
+          "icon": "pytest"
+        },
+        {
+          "id": "go-test",
+          "name": "go test",
+          "icon": "go-test"
+        },
+        {
+          "id": "rspec",
+          "name": "RSpec",
+          "icon": "rspec"
+        },
+        {
+          "id": "mockito",
+          "name": "Mockito",
+          "icon": "mockito"
+        },
+        {
+          "id": "biome",
+          "name": "Biome",
+          "icon": "biome"
+        },
+        {
+          "id": "golangci-lint",
+          "name": "golangci-lint",
+          "icon": "golangci-lint"
+        },
+        {
+          "id": "eslint",
+          "name": "ESLint",
+          "icon": "eslint"
+        },
+        {
+          "id": "ruff",
+          "name": "Ruff",
+          "icon": "ruff"
+        },
+        {
+          "id": "rubocop",
+          "name": "RuboCop",
+          "icon": "rubocop"
+        },
+        {
+          "id": "checkstyle",
+          "name": "Checkstyle",
+          "icon": "checkstyle"
+        },
+        {
+          "id": "playwright",
+          "name": "Playwright",
+          "icon": "playwright"
+        },
+        {
+          "id": "testing-library",
+          "name": "Testing Library",
+          "icon": "testing-library"
+        }
+      ]
+    },
+    {
+      "id": "practices",
+      "name": "Practices",
+      "items": [
+        {
+          "id": "tdd",
+          "name": "TDD",
+          "icon": "tdd"
+        },
+        {
+          "id": "bdd",
+          "name": "BDD",
+          "icon": "bdd"
+        },
+        {
+          "id": "domain-driven-design",
+          "name": "Domain-Driven Design (DDD)",
+          "icon": "domain-driven-design"
+        },
+        {
+          "id": "atdd",
+          "name": "ATDD",
+          "icon": "atdd"
+        },
+        {
+          "id": "hexagonal-architecture",
+          "name": "Hexagonal Architecture",
+          "icon": "hexagonal-architecture"
+        },
+        {
+          "id": "ci-cd",
+          "name": "CI/CD",
+          "icon": "ci-cd"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Tools",
+      "items": [
+        {
+          "id": "neovim",
+          "name": "NeoVim",
+          "icon": "neovim"
+        },
+        {
+          "id": "webstorm",
+          "name": "WebStorm",
+          "icon": "webstorm"
+        },
+        {
+          "id": "intellij-idea",
+          "name": "IntelliJ IDEA",
+          "icon": "intellij-idea"
+        },
+        {
+          "id": "eclipse",
+          "name": "Eclipse",
+          "icon": "eclipse"
+        },
+        {
+          "id": "zed",
+          "name": "Zed",
+          "icon": "zed"
+        },
+        {
+          "id": "dbeaver",
+          "name": "DBeaver",
+          "icon": "dbeaver"
+        },
+        {
+          "id": "postman",
+          "name": "Postman",
+          "icon": "postman"
+        }
+      ]
+    }
+  ]
+}
