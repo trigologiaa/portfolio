@@ -112,7 +112,7 @@ export function makeContentRoot(
     if (custom.about !== null) {
       writeFileSync(
         path.join(directory, "about.mdx"),
-        JSON.stringify(custom.about ?? "Hello, I am Ada"),
+        custom.about ?? "Hello, I am Ada.",
       );
     }
   }

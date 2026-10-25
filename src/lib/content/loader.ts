@@ -2,7 +2,14 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import type z from "zod";
 import { routing } from "@/i18n/routing";
-import { type Profile, profileSchema } from "./schemas";
+import {
+  type Profile,
+  profileSchema,
+  type Stack,
+  stackSchema,
+  type Timeline,
+  timelineSchema,
+} from "./schemas";
 
 export type ContentErrorCode =
   | "unsupported_locale"
@@ -75,6 +82,22 @@ function readJson<S extends z.ZodType>(
   return result.data;
 }
 
+export function loadAbout(root: string, locale: string): string {
+  const { text, label } = readText(root, locale, "about.mdx");
+  if (text.trim() === "") {
+    throw new ContentError("invalid_content", `${label}: file is empty`);
+  }
+  return text;
+}
+
 export function loadProfile(root: string, locale: string): Profile {
   return readJson(root, locale, "profile.json", profileSchema);
+}
+
+export function loadStack(root: string, locale: string): Stack {
+  return readJson(root, locale, "stack.json", stackSchema);
+}
+
+export function loadTimeline(root: string, locale: string): Timeline {
+  return readJson(root, locale, "timeline.json", timelineSchema);
 }
