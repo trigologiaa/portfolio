@@ -41,5 +41,9 @@
     "viewProjects": "Ver proyectos",
     "contact": "Contactarme",
     "downloadCv": "Descargar CV"
+  },
+  "About": {
+    "title": "Sobre mí",
+    "highlights": "Datos rápidos"
   }
 }

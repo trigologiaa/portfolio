@@ -1,4 +1,4 @@
-# US-04 — Internationalization
+# US-04 - Internationalization
 
 **As** a visitor, **I want** to read the site in Spanish or English, **so that**
 I understand it in my own language.
@@ -12,7 +12,7 @@ I understand it in my own language.
 > **Estimation:** M (routing, message catalogs and language detection touch
 > every later page)
 >
-> **Dependencies:** [US-02](us-02-quality-gates.md)
+> **Dependencies:** [US-02](./us-02-quality-gates.md)
 
 Adds locale-based routing (`/es`, `/en`) with message catalogs and a language
 switcher. **Its critical point** is to get the routing and the
@@ -94,8 +94,8 @@ Feature: Internationalization
 
 ## Definition of Done
 
-- [ ] `/es` and `/en` render the placeholder home in their language.
-- [ ] Redirect, fallback, switcher and 404 scenarios pass in Playwright.
-- [ ] Key parity unit test passes.
-- [ ] PR merged via merge commit from `us-04-internationalization`.
-- [ ] README explains how to add a string and a locale.
+- [x] `/es` and `/en` render the placeholder home in their language.
+- [x] Redirect, fallback, switcher and 404 scenarios pass in Playwright.
+- [x] Key parity unit test passes.
+- [x] PR merged via merge commit from `us-04-internationalization`.
+- [x] README explains how to add a string and a locale.

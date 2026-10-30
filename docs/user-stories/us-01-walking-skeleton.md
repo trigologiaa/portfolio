@@ -1,12 +1,19 @@
-# US-01 — Walking skeleton
+# US-01 - Walking skeleton
 
 **As** the site owner, **I want** a minimal Next.js app with only a title,
 deployed to a public URL through a CI pipeline, **so that** deployment and
 pipeline problems surface while they are still cheap to fix.
 
-> **Epic:** Foundation · **Type:** Technical (enabler) **Priority:** Must
+> **Epic:** Foundation
+>
+> **Type:** Technical (enabler)
+>
+> **Priority:** Must
+>
 > **Estimation:** M (several external services to wire up: GitHub, Vercel,
-> branch protection; the app code itself is trivial) **Dependencies:** none
+> branch protection; the app code itself is trivial)
+>
+> **Dependencies:** none
 
 This story creates the repository skeleton: Next.js (App Router, TypeScript), a
 single page with a title, a GitHub Actions workflow, Git hooks with Husky and a
@@ -39,11 +46,12 @@ Included:
 
 Not included:
 
-- `pnpm verify`, unit tests and e2e tests → **[US-02](us-02-quality-gates.md)**
-  (which also adds the tests to the `pre-push` hook).
-- Design, theme and styling beyond defaults →
-  **[US-03](us-03-design-tokens-and-theme.md)**.
-- Analytics → **[US-24](us-24-privacy-friendly-analytics.md)**.
+- `pnpm verify`, unit tests and e2e tests ->
+  **[US-02](./us-02-quality-gates.md)** (which also adds the tests to the
+  `pre-push` hook).
+- Design, theme and styling beyond defaults ->
+  **[US-03](./us-03-design-tokens-and-theme)**.
+- Analytics -> **[US-24](./us-24-privacy-friendly-analytics)**.
 - Custom domain (out of scope for the whole project, see [README](README.md)).
 
 ## Acceptance scenarios
@@ -113,9 +121,8 @@ Feature: Walking skeleton
 
 ## Decisions
 
-- **Vercel:** native ISR support (needed by
-  [US-11](us-11-github-client-with-isr.md)) and PR previews. Netlify discarded
-  for weaker Next.js support.
+- **Vercel:** native ISR support (needed by US-11) and PR previews. Netlify
+  discarded for weaker Next.js support.
 - **GitHub Actions for CI:** keeps CI next to the code. Vercel's build alone is
   not used as the gate because it does not run lint/tests.
 - **Merge commits, no squash:** explicit owner decision; keeps each story's
@@ -133,13 +140,13 @@ Feature: Walking skeleton
 
 ## Definition of Done
 
-- [ ] Production URL is public and returns 200 with the title.
-- [ ] `main` protected as described and verified with a rejected direct push.
-- [ ] CI workflow runs on PRs and is a required status check.
-- [ ] PR merged via merge commit (no squash) from branch
+- [x] Production URL is public and returns 200 with the title.
+- [x] `main` protected as described and verified with a rejected direct push.
+- [x] CI workflow runs on PRs and is a required status check.
+- [x] PR merged via merge commit (no squash) from branch
       `us-01-walking-skeleton`.
-- [ ] `README.md` documents the production URL and the workflow.
-- [ ] `.env.example` exists and no secrets are in the repo.
-- [ ] Husky installed: `commit-msg` rejects a bad message, `pre-push` blocks a
+- [x] `README.md` documents the production URL and the workflow.
+- [x] `.env.example` exists and no secrets are in the repo.
+- [x] Husky installed: `commit-msg` rejects a bad message, `pre-push` blocks a
       push with failing checks (both verified).
-- [ ] Lint is Biome only (no ESLint/Prettier in `package.json`).
+- [x] Lint is Biome only (no ESLint/Prettier in `package.json`).

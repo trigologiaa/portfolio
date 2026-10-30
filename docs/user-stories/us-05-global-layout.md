@@ -1,4 +1,4 @@
-# US-05 — Global layout
+# US-05 - Global layout
 
 **As** a visitor, **I want** a header with navigation and a footer on every
 page, **so that** I can move around the site and always find the main links.
@@ -12,8 +12,8 @@ page, **so that** I can move around the site and always find the main links.
 > **Estimation:** M (responsive navigation with anchors and cross-page links,
 > plus mobile menu)
 >
-> **Dependencies:** [US-03](/docs/us-03-design-tokens-and-theme.md),
-> [US-04](/docs/us-04-internationalization.md)
+> **Dependencies:** [US-03](./us-03-design-tokens-and-theme.md),
+> [US-04](./us-04-internationalization.md)
 
 Builds the shared shell: skip link, header (logo/name, section navigation,
 language switcher, theme selector), mobile menu and footer. **Its critical
@@ -28,8 +28,8 @@ Included:
 
 - Header with links to the home sections: Projects, About, Stack, Experience,
   Contact; plus CV link slot and the language/theme controls. The theme control
-  is the flavor dropdown from [US-03](/docs/us-03-design-tokens-and-theme.md);
-  on small screens it shows only its icon, so it fits next to the menu button.
+  is the flavor dropdown from [US-03](./us-03-design-tokens-and-theme.md); on
+  small screens it shows only its icon, so it fits next to the menu button.
 - Anchor navigation on `/[locale]`; on other pages, links point to
   `[locale]#section`.
 - Active section highlight while scrolling on the home page.
@@ -42,7 +42,7 @@ Included:
 
 Not included:
 
-- Content of each section - US-07 to US-10.
+- Content of each section - [US-07](./us-07-hero) to US-10.
 - Contact details in the footer - US-18.
 - Scroll and entrance animations- US-25.
 
@@ -95,8 +95,8 @@ Feature: Global layout
 
 ## Definition of Done
 
-- [ ] Header, mobile menu and footer implemented in both languages and the four
+- [x] Header, mobile menu and footer implemented in both languages and the four
       flavors.
-- [ ] Playwright scenarios pass at both widths.
-- [ ] Skip link and focus return verified manually with the keyboard.
-- [ ] PR merged via merge commit from `us-05-global-layout`.
+- [x] Playwright scenarios pass at both widths.
+- [x] Skip link and focus return verified manually with the keyboard.
+- [x] PR merged via merge commit from `us-05-global-layout`.

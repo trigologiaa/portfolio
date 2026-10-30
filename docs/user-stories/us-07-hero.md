@@ -1,4 +1,4 @@
-# US-07 — Hero
+# US-07 - Hero
 
 **As** a technical recruiter, **I want** to understand who the owner is and what
 they do within seconds, **so that** I decide quickly whether to keep reading.
@@ -11,7 +11,8 @@ they do within seconds, **so that** I decide quickly whether to keep reading.
 >
 > **Estimation:** S (one section, content comes from the profile file)
 >
-> **Dependencies:** US-05, US-06
+> **Dependencies:** [US-05](./us-05-global-layout.md),
+> [US-06](./us-06-content-model.md)
 
 The first section of the home page: name, role headline, a one-line pitch and
 the main calls to action. **Its critical point** is that it communicates value
@@ -87,7 +88,7 @@ Feature: Hero
 
 ## Definition of Done
 
-- [ ] Hero renders in both languages and the four flavors.
-- [ ] Scenarios above covered by tests and passing.
-- [ ] No seniority wording in either locale (checked by review).
-- [ ] PR merged via merge commit from `us-07-hero`.
+- [x] Hero renders in both languages and the four flavors.
+- [x] Scenarios above covered by tests and passing.
+- [x] No seniority wording in either locale (checked by review).
+- [x] PR merged via merge commit from `us-07-hero`.
