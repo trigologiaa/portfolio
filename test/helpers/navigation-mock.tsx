@@ -6,7 +6,7 @@ export function Link({
   ...props
 }: ComponentProps<"a"> & { href: string }): ReactElement {
   return (
-    <a href="href" {...props}>
+    <a href={href} {...props}>
       {children}
     </a>
   );

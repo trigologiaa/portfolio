@@ -1,14 +1,21 @@
+import { useTranslations } from "next-intl";
 import type { ReactElement } from "react";
-import type { Profile } from "@/lib/content";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import type { Profile } from "@/lib/content/schemas";
 
 interface HeroProps {
   profile: Pick<
     Profile,
     "name" | "headline" | "pitch" | "availability" | "photo"
   >;
+  cv?: {
+    href: string;
+  };
 }
 
-export function Hero({ profile }: HeroProps): ReactElement {
+export function Hero({ profile, cv }: HeroProps): ReactElement {
+  const t: ReturnType<typeof useTranslations<"Hero">> = useTranslations("Hero");
   return (
     <section
       aria-labelledby="hero-title"
@@ -26,7 +33,22 @@ export function Hero({ profile }: HeroProps): ReactElement {
         {profile.name}
       </h1>
       <p className="text-xl text-muted-foreground">{profile.headline}</p>
-      <p className="text-xl text-muted-foreground">{profile.pitch}</p>
+      <p className="max-w-prose">{profile.pitch}</p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <Button asChild size="lg">
+          <Link href="/#projects">{t("viewProjects")}</Link>
+        </Button>
+        <Button asChild size="lg" variant="outline">
+          <Link href="/#contact">{t("contact")}</Link>
+        </Button>
+        {cv && (
+          <Button asChild size="lg" variant="ghost">
+            <a href={cv.href} download>
+              {t("downloadCv")}
+            </a>
+          </Button>
+        )}
+      </div>
     </section>
   );
 }

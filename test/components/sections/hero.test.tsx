@@ -35,4 +35,33 @@ describe("Hero", (): void => {
     renderWithProviders(<Hero profile={profile} />);
     expect(screen.queryByText("Open to opportunities")).not.toBeInTheDocument();
   });
+
+  it("links the main calls to action to the projects and contact sections", (): void => {
+    renderWithProviders(<Hero profile={profile} />);
+    expect(screen.getByRole("link", { name: "View projects" })).toHaveAttribute(
+      "href",
+      "/#projects",
+    );
+    expect(screen.getByRole("link", { name: "Get in touch" })).toHaveAttribute(
+      "href",
+      "/#contact",
+    );
+  });
+
+  it("does not show a CV button when no CV is available", (): void => {
+    renderWithProviders(<Hero profile={profile} />);
+    expect(
+      screen.queryByRole("link", { name: "Download CV" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows the CV button when a CV is available", (): void => {
+    renderWithProviders(
+      <Hero profile={profile} cv={{ href: "/cv/cv-en.pdf" }} />,
+    );
+    expect(screen.getByRole("link", { name: "Download CV" })).toHaveAttribute(
+      "href",
+      "/cv/cv-en.pdf",
+    );
+  });
 });
