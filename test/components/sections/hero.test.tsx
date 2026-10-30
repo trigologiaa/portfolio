@@ -64,4 +64,41 @@ describe("Hero", (): void => {
       "/cv/cv-en.pdf",
     );
   });
+
+  it("shows the photo with its alternative text when there is one", (): void => {
+    renderWithProviders(
+      <Hero
+        profile={{
+          ...profile,
+          photo: { src: "/images/profile.jpg", alt: "Portrait of Ada" },
+        }}
+      />,
+    );
+    expect(
+      screen.getByRole("img", { name: "Portrait of Ada" }),
+    ).toBeInTheDocument();
+  });
+
+  it("renders no image at all when there is no photo", (): void => {
+    renderWithProviders(<Hero profile={profile} />);
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
+
+  it("translates the calls to action", (): void => {
+    renderWithProviders(
+      <Hero profile={profile} cv={{ href: "/cv/cv-es.pdf" }} />,
+      {
+        locale: "es",
+      },
+    );
+    expect(
+      screen.getByRole("link", { name: "Ver proyectos" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Contactarme" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Descargar CV" }),
+    ).toBeInTheDocument();
+  });
 });
