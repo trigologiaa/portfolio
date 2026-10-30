@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import type { JSX } from "react/jsx-runtime";
+import { Mdx } from "@/components/mdx/mdx";
+import { AboutSection } from "@/components/sections/about-section";
 import { Hero } from "@/components/sections/hero";
-import { getProfile } from "@/lib/content";
+import { getAbout, getProfile } from "@/lib/content";
 
 function Placeholder({
   id,
@@ -25,11 +27,14 @@ export default async function Home({
   const { locale } = await params;
   const nav = await getTranslations({ locale, namespace: "Nav" });
   const profile = getProfile(locale);
+  const aboutSource = getAbout(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
       <Hero profile={profile} />
       <Placeholder id="projects" title={nav("projects")} />
-      <Placeholder id="about" title={nav("about")} />
+      <AboutSection highlights={profile.highlights}>
+        <Mdx source={aboutSource} />
+      </AboutSection>
       <Placeholder id="stack" title={nav("stack")} />
       <Placeholder id="experience" title={nav("experience")} />
       <Placeholder id="contact" title={nav("contact")} />
