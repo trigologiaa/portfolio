@@ -1,6 +1,9 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { AboutSection } from "@/components/sections/about-section";
+import {
+  AboutSection,
+  MAX_HIGHLIGHTS,
+} from "@/components/sections/about-section";
 import { renderWithProviders } from "../../render-with-providers";
 
 describe("AboutSection", (): void => {
@@ -35,5 +38,39 @@ describe("AboutSection", (): void => {
     expect(
       screen.getByRole("heading", { level: 2, name: "Sobre mí" }),
     ).toBeInTheDocument();
+  });
+
+  it("lists the highlights", (): void => {
+    renderWithProviders(
+      <AboutSection highlights={["Buenos Aires", "Spanish and English"]}>
+        <p>Hi</p>
+      </AboutSection>,
+    );
+    const list = screen.getByRole("list", { name: "Quick facts" });
+    expect(list).toBeInTheDocument();
+    expect(screen.getByText("Buenos Aires")).toBeInTheDocument();
+    expect(screen.getByText("Spanish and English")).toBeInTheDocument();
+  });
+
+  it("shows at most MAX_HIGHLIGHTS highlights", (): void => {
+    const six: string[] = ["a", "b", "c", "d", "e", "f"].map(
+      (letter) => `fact ${letter}`,
+    );
+    renderWithProviders(
+      <AboutSection highlights={six}>
+        <p>Hi</p>
+      </AboutSection>,
+    );
+    expect(screen.getAllByRole("listitem")).toHaveLength(MAX_HIGHLIGHTS);
+    expect(screen.queryByText("fact e")).not.toBeInTheDocument();
+  });
+
+  it("renders no list when there are no highlights", (): void => {
+    renderWithProviders(
+      <AboutSection highlights={[]}>
+        <p>Hi</p>
+      </AboutSection>,
+    );
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 });
