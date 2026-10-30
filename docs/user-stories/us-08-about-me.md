@@ -82,7 +82,7 @@ Feature: About me
 
 ## Definition of Done
 
-- [ ] Section renders in both locales and the four flavors.
-- [ ] Scenarios covered by tests and passing.
-- [ ] Placeholder copy replaced or clearly marked `TODO` in content files.
-- [ ] PR merged via merge commit from `us-08-about-me`.
+- [x] Section renders in both locales and the four flavors.
+- [x] Scenarios covered by tests and passing.
+- [x] Placeholder copy replaced or clearly marked `TODO` in content files.
+- [x] PR merged via merge commit from `us-08-about-me`.
