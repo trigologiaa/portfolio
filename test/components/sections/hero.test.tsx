@@ -23,4 +23,16 @@ describe("Hero", (): void => {
     expect(screen.getByText("Full-stack developer")).toBeInTheDocument();
     expect(screen.getByText("I build things for the web.")).toBeInTheDocument();
   });
+
+  it("shows the availability note when it exists", (): void => {
+    renderWithProviders(
+      <Hero profile={{ ...profile, availability: "Open to opportunities" }} />,
+    );
+    expect(screen.getByText("Open to opportunities")).toBeInTheDocument();
+  });
+
+  it("renders no availability note when it does not exist", (): void => {
+    renderWithProviders(<Hero profile={profile} />);
+    expect(screen.queryByText("Open to opportunities")).not.toBeInTheDocument();
+  });
 });
