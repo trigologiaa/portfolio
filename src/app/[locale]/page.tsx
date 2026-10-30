@@ -1,21 +1,38 @@
 import { getTranslations } from "next-intl/server";
-import { navItems } from "@/config/nav";
-import { siteConfig } from "@/lib/site";
+import type { JSX } from "react/jsx-runtime";
+import { Hero } from "@/components/sections/hero";
+import { getProfile } from "@/lib/content";
 
-export default async function Home(): Promise<React.JSX.Element> {
-  const nav = await getTranslations("Nav");
-  const home = await getTranslations("Home");
+function Placeholder({
+  id,
+  title,
+}: {
+  id: string;
+  title: string;
+}): JSX.Element {
+  return (
+    <section id={id} className="scroll-mt-20 py-24">
+      <h2 className="text-2xl font-semibold">{title}</h2>
+    </section>
+  );
+}
+
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<React.JSX.Element> {
+  const { locale } = await params;
+  const nav = await getTranslations({ locale, namespace: "Nav" });
+  const profile = getProfile(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
-      <section className="flex min-h-[60vh] flex-col justify-center gap-4 py-16">
-        <h1 className="text-4xl font-bold">{siteConfig.name}</h1>
-        <p className="text-muted-foreground">{home("tagline")}</p>
-      </section>
-      {navItems.map(({ id }) => (
-        <section key={id} id={id} className="scroll-mt-20 py-24">
-          <h2 className="text-2xl font-semibold">{nav(id)}</h2>
-        </section>
-      ))}
+      <Hero profile={profile} />
+      <Placeholder id="projects" title={nav("projects")} />
+      <Placeholder id="about" title={nav("about")} />
+      <Placeholder id="stack" title={nav("stack")} />
+      <Placeholder id="experience" title={nav("experience")} />
+      <Placeholder id="contact" title={nav("contact")} />
     </main>
   );
 }

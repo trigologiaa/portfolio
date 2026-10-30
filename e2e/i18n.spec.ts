@@ -13,7 +13,9 @@ test.describe("browser in Spanish (Argentina)", (): void => {
     await page.goto("/");
     await expect(page).toHaveURL(/\/es$/);
     await expect(page.locator("html")).toHaveAttribute("lang", "es");
-    await expect(page.getByText("Bienvenido a mi portfolio")).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Ver proyectos" }),
+    ).toBeVisible();
   });
 });
 
@@ -46,9 +48,11 @@ test("switching language changes the page and stores the choice in a cookie", as
   context,
 }): Promise<void> => {
   await page.goto("/en");
-  await page.getByRole("button", { name: "Español" }).click();
-  await expect(page).toHaveURL(/\/es$/);
-  await expect(page.getByText("Bienvenido a mi portfolio")).toBeVisible();
+  await expect(async (): Promise<void> => {
+    await page.getByRole("button", { name: "Español" }).click();
+    await expect(page).toHaveURL(/\/es$/, { timeout: 1000 });
+  }).toPass();
+  await expect(page.getByRole("link", { name: "Ver proyectos" })).toBeVisible();
   const cookies = await context.cookies();
   expect(cookies.find((cookie) => cookie.name === "NEXT_LOCALE")?.value).toBe(
     "es",

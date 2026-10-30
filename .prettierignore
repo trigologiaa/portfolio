@@ -1,4 +1,4 @@
 node_modules
 .next
-user-stories
+/user-stories
 pnpm-lock.yaml

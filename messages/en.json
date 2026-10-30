@@ -36,5 +36,10 @@
   "Footer": {
     "rights": "All rights reserved.",
     "social": "Social links"
+  },
+  "Hero": {
+    "viewProjects": "View projects",
+    "contact": "Get in touch",
+    "downloadCv": "Download CV"
   }
 }
