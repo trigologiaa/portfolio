@@ -13,7 +13,7 @@ build catches mistakes.
 > **Estimation:** M (schemas, loaders and per-locale conventions for several
 > content types)
 >
-> **Dependencies:** [US-04](/docs/us-04-internationalization.md)
+> **Dependencies:** [US-04](./us-04-internationalization.md)
 
 Defines the `/content` directory, the schemas (validated with Zod) and typed
 loader functions for: profile, stack, experience/education entries and project
@@ -40,7 +40,7 @@ Included:
 
 Not included:
 
-- Rendering of each content type - US-07 to US-10
+- Rendering of each content type - [US-07](./us-07-hero) to US-10
 - Github data -> US-11
 - Blog posts -> US-26
 
@@ -92,7 +92,7 @@ Feature: Content model
 
 ## Definition of Done
 
-- [ ] Schemas, loaders and sample content exist for all liste types.
-- [ ] Validation runs in `pnpm verify` and fails on the scenarios above.
-- [ ] `docs/content-guide.md` written.
-- [ ] PR merged via merge commit from `us-06-content-model`.
+- [x] Schemas, loaders and sample content exist for all liste types.
+- [x] Validation runs in `pnpm verify` and fails on the scenarios above.
+- [x] `docs/content-guide.md` written.
+- [x] PR merged via merge commit from `us-06-content-model`.

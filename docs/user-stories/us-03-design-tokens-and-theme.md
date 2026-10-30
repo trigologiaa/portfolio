@@ -1,11 +1,18 @@
-# US-03 — Design tokens and theme
+# US-03 - Design tokens and theme
 
 **As** a visitor, **I want** a consistent look and a choice between four colour
 themes, **so that** the site is comfortable to read in my preferred setting.
 
-> **Epic:** Design system · **Type:** Functional **Priority:** Must
+> **Epic:** Design system
+>
+> **Type:** Functional
+>
+> **Priority:** Must
+>
 > **Estimation:** M (the visual identity has to be defined, not only
-> implemented) **Dependencies:** [US-02](us-02-quality-gates.md)
+> implemented)
+>
+> **Dependencies:** [US-02](./us-02-quality-gates.md)
 
 Defines the visual identity (palette, typography, spacing, radii, motion
 tokens), installs Tailwind and shadcn/ui and implements the theme selector.
@@ -47,9 +54,9 @@ Included:
 
 Not included:
 
-- Header, navigation and footer → **US-05**.
-- Framer Motion animations → **US-25** (only motion tokens are defined here).
-- Language switcher → **US-04**.
+- Header, navigation and footer -> **[US-05](./us-05-global-layout)**.
+- Framer Motion animations -> **US-25** (only motion tokens are defined here).
+- Language switcher → **[US-04](./us-04-internationalization)**.
 
 ## Acceptance scenarios
 
@@ -131,10 +138,10 @@ Feature: Design tokens and theme
 
 ## Definition of Done
 
-- [ ] `docs/design-references/design-references.md` lists, per reference site,
+- [x] `docs/design-references/design-references.md` lists, per reference site,
       what is taken (layout, typography, colors, animations) and the technology
       verdicts.
-- [ ] Tokens, fonts and shadcn/ui configured; Button themed in the four flavors.
-- [ ] Theme scenarios covered by Playwright tests and passing.
-- [ ] Contrast of all token pairs checked in the four flavors and recorded.
-- [ ] PR merged via merge commit from `us-03-design-tokens-and-theme`.
+- [x] Tokens, fonts and shadcn/ui configured; Button themed in the four flavors.
+- [x] Theme scenarios covered by Playwright tests and passing.
+- [x] Contrast of all token pairs checked in the four flavors and recorded.
+- [x] PR merged via merge commit from `us-03-design-tokens-and-theme`.

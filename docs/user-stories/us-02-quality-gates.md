@@ -13,7 +13,7 @@ locally and in the pipeline.
 > **Estimation:** M (configuring Vitest, Playwright and CI caching takes time,
 > but there is litte logic)
 >
-> **Dependencies:** [US-01](docs/us-01-walking-skeleton.md)
+> **Dependencies:** [US-01](./us-01-walking-skeleton.md)
 
 Builds on the linters from US-01 (Biome for code, markdownlint + Prettier for
 Markdown) and sets up TypeScript strict, Vitest (unit) and Playwright (e2e) and
@@ -33,18 +33,18 @@ Included:
   the tooling works.
 - CI updated to run `pnpm verify` and, in a separate job, `pnpm test:e2e`
   against the build; Playwright report uploaded artifact on failure.
-- Lint is already set up in [US-01](/docs/us-01-walking-skeleton.md):
-  `pnpm lint` runs Biome (lint, format, import order) and the Markdown checks,
-  so `verify` needs no separate format step. ESLint is not used; Prettier only
-  wraps Markdown.
+- Lint is already set up in [US-01](./us-01-walking-skeleton.md): `pnpm lint`
+  runs Biome (lint, format, import order) and the Markdown checks, so `verify`
+  needs no separate format step. ESLint is not used; Prettier only wraps
+  Markdown.
 - The Husky `pre-push` hook from US-01 is updated to run `pnpm verify` (lint,
   types, unit tests and build). The `commit-msg` hook (`type(us-NN): message`)
   is unchanged. e2e tests stay in CI only because of their duration.
 
 Not included:
 
-- Accessibility checks (axe) $→$ **US-22**.
-- Lighthouse checks $→$ **US-23**.
+- Accessibility checks (axe) -> **US-22**.
+- Lighthouse checks -> **US-23**.
 - Tests for features that do not exist yet; each story adds its own.
 
 ## Acceptance scenarios
@@ -95,7 +95,7 @@ Feature: Quality gates
 - **Playwright over Cypress:** parallel runs, built-in report, easy integration
   with axe in **US-22**.
 - **Lint stack unchanged:** Biome for code, markdownlint + Prettier for Markdown
-  (decided in [US-01](/docs/us-01-walking-skeleton.md)); `verify` just calls
+  (decided in [US-01](./us-01-walking-skeleton.md)); `verify` just calls
   `pnpm lint`.
 - **`pre-push` runs `verify`, not e2e:** keeps pushes fast; Playwright runs in
   CI.
@@ -104,11 +104,11 @@ Feature: Quality gates
 
 ## Definition of Done
 
-- [ ] `pnpm verify` passes locally and in CI.
-- [ ] Sample unit and e2e tests exists and pass.
-- [ ] `.husky/pre-push` runs `pnpm verify` and blocks a push when a unit test
+- [x] `pnpm verify` passes locally and in CI.
+- [x] Sample unit and e2e tests exists and pass.
+- [x] `.husky/pre-push` runs `pnpm verify` and blocks a push when a unit test
       fails (verified).
-- [ ] e2e CI job failure artifact verified by breaking a test on a throw-away
+- [x] e2e CI job failure artifact verified by breaking a test on a throw-away
       branch.
-- [ ] PR merged via merge commit from `us-02-quality-gates`.
-- [ ] README documents each script.
+- [x] PR merged via merge commit from `us-02-quality-gates`.
+- [x] README documents each script.
