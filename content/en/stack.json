@@ -110,12 +110,12 @@
         {
           "id": "html",
           "name": "HTML5",
-          "icon": "html"
+          "icon": "html5"
         },
         {
           "id": "css",
           "name": "CSS3",
-          "icon": "css"
+          "icon": "css3"
         },
         {
           "id": "react",
@@ -125,7 +125,7 @@
         {
           "id": "tailwind-css",
           "name": "Tailwind CSS",
-          "icon": "tailwind-css"
+          "icon": "tailwind"
         },
         {
           "id": "vite",
@@ -182,7 +182,7 @@
         {
           "id": "github-gitlab",
           "name": "GitHub / GitLab",
-          "icon": "github-gitlab"
+          "icon": "github"
         }
       ]
     },

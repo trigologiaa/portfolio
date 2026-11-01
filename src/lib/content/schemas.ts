@@ -1,4 +1,5 @@
 import z, { type ZodObject, type ZodString, type ZodType } from "zod";
+import { iconKeys } from "./icon-keys";
 
 const ISO_DATE_REGEX: RegExp =
   /^\d{4}-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?$/;
@@ -99,7 +100,7 @@ export const profileSchema: ZodType<Profile> = z.object({
 export const stackItemSchema: ZodType<StackItem> = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  icon: z.string().min(1),
+  icon: z.enum(iconKeys),
   url: z.url().optional(),
 });
 
