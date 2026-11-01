@@ -77,8 +77,8 @@ Feature: Stack and skills
 
 ## Definition of Done
 
-- [ ] Section renders from `stack.json` in both locales.
-- [ ] Keyboard behavior verified by Playwright.
-- [ ] Icon key validation added to the content validation of
+- [x] Section renders from `stack.json` in both locales.
+- [x] Keyboard behavior verified by Playwright.
+- [x] Icon key validation added to the content validation of
       [US-06](./us-06-content-model).
-- [ ] PR merged via merge commit from `us-09-stack-and-skills`.
+- [x] PR merged via merge commit from `us-09-stack-and-skills`.
