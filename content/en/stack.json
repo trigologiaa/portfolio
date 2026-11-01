@@ -7,52 +7,72 @@
         {
           "id": "java",
           "name": "Java",
-          "icon": "java"
+          "icon": "java",
+          "description": "Object-oriented, statically typed language that runs on the JVM.",
+          "url": "https://dev.java"
         },
         {
           "id": "go",
           "name": "Go",
-          "icon": "go"
+          "icon": "go",
+          "description": "Compiled language from Google with simple syntax and built-in concurrency.",
+          "url": "https://go.dev"
         },
         {
           "id": "c",
           "name": "C",
-          "icon": "c"
+          "icon": "c",
+          "description": "Low-level systems language that gives direct control over memory.",
+          "url": "https://www.iso.org/standard/74528.html"
         },
         {
           "id": "python",
           "name": "Python",
-          "icon": "python"
+          "icon": "python",
+          "description": "Readable, versatile language for scripting, data and backend services.",
+          "url": "https://www.python.org"
         },
         {
           "id": "typescript",
           "name": "TypeScript",
-          "icon": "typescript"
+          "icon": "typescript",
+          "description": "JavaScript with static types, which catches many mistakes before running the code.",
+          "url": "https://www.typescriptlang.org"
         },
         {
           "id": "javascript",
           "name": "JavaScript",
-          "icon": "javascript"
+          "icon": "javascript",
+          "description": "The language of the web, running in the browser and on the server.",
+          "url": "https://developer.mozilla.org/docs/Web/JavaScript"
         },
         {
           "id": "ruby",
           "name": "Ruby",
-          "icon": "ruby"
+          "icon": "ruby",
+          "description": "Dynamic language designed for developer happiness and expressive code.",
+          "url": "https://www.ruby-lang.org"
         },
         {
           "id": "vhdl",
           "name": "VHDL",
-          "icon": "vhdl"
+          "icon": "vhdl",
+          "description": "Hardware description language used to design and simulate digital circuits.",
+          "url": "https://ieeexplore.ieee.org/document/8938196"
         },
         {
           "id": "bash",
           "name": "Bash",
-          "icon": "bash"
+          "icon": "bash",
+          "description": "Unix shell and scripting language to automate tasks on the command line.",
+          "url": "https://www.gnu.org/software/bash/"
         },
         {
           "id": "sql",
           "name": "SQL",
-          "icon": "sql"
+          "icon": "sql",
+          "description": "Standard language to query and manage data in relational databases.",
+          "url": "https://www.iso.org/standard/76583.html"
         }
       ]
     },
@@ -63,12 +83,16 @@
         {
           "id": "ruby-on-rails",
           "name": "Ruby on Rails",
-          "icon": "ruby-on-rails"
+          "icon": "ruby-on-rails",
+          "description": "Full-stack web framework that favors convention over configuration.",
+          "url": "https://rubyonrails.org"
         },
         {
           "id": "nextjs",
           "name": "Next.js",
-          "icon": "nextjs"
+          "icon": "nextjs",
+          "description": "React framework with routing, server rendering and a full build pipeline.",
+          "url": "https://nextjs.org"
         }
       ]
     },
@@ -79,27 +103,37 @@
         {
           "id": "springboot",
           "name": "Spring Boot",
-          "icon": "springboot"
+          "icon": "springboot",
+          "description": "Opinionated Java framework to build production-ready services quickly.",
+          "url": "https://spring.io/projects/spring-boot"
         },
         {
           "id": "nodejs",
           "name": "Node.js",
-          "icon": "nodejs"
+          "icon": "nodejs",
+          "description": "JavaScript runtime built on V8 to run code outside the browser.",
+          "url": "https://nodejs.org"
         },
         {
           "id": "express",
           "name": "Express",
-          "icon": "express"
+          "icon": "express",
+          "description": "Minimal and flexible web framework for Node.js.",
+          "url": "https://expressjs.com"
         },
         {
           "id": "restful-apis",
           "name": "RESTful APIs",
-          "icon": "restful-apis"
+          "icon": "restful-apis",
+          "description": "Architectural style for web APIs based on resources and standard HTTP methods.",
+          "url": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
         },
         {
           "id": "jwt",
           "name": "JWT (JSON Web Tokens)",
-          "icon": "jwt"
+          "icon": "jwt",
+          "description": "Compact, signed token format used to carry identity between client and server.",
+          "url": "https://jwt.io"
         }
       ]
     },
@@ -110,27 +144,37 @@
         {
           "id": "html",
           "name": "HTML5",
-          "icon": "html"
+          "icon": "html5",
+          "description": "The markup language that gives structure and meaning to web pages.",
+          "url": "https://html.spec.whatwg.org"
         },
         {
           "id": "css",
           "name": "CSS3",
-          "icon": "css"
+          "icon": "css3",
+          "description": "The style language that controls layout, color and typography on the web.",
+          "url": "https://www.w3.org/Style/CSS/"
         },
         {
           "id": "react",
           "name": "React",
-          "icon": "react"
+          "icon": "react",
+          "description": "Library to build user interfaces out of reusable components.",
+          "url": "https://react.dev"
         },
         {
           "id": "tailwind-css",
           "name": "Tailwind CSS",
-          "icon": "tailwind-css"
+          "icon": "tailwind",
+          "description": "Utility-first CSS framework to style directly in the markup.",
+          "url": "https://tailwindcss.com"
         },
         {
           "id": "vite",
           "name": "Vite",
-          "icon": "vite"
+          "icon": "vite",
+          "description": "Fast build tool and dev server for modern frontend projects.",
+          "url": "https://vite.dev"
         }
       ]
     },
@@ -141,22 +185,30 @@
         {
           "id": "postgresql",
           "name": "PostgreSQL",
-          "icon": "postgresql"
+          "icon": "postgresql",
+          "description": "Powerful open-source relational database known for its reliability.",
+          "url": "https://www.postgresql.org"
         },
         {
           "id": "mysql",
           "name": "MySQL",
-          "icon": "mysql"
+          "icon": "mysql",
+          "description": "Widely used open-source relational database.",
+          "url": "https://www.mysql.com"
         },
         {
           "id": "mariadb",
           "name": "MariaDB",
-          "icon": "mariadb"
+          "icon": "mariadb",
+          "description": "Community-driven open-source fork of MySQL.",
+          "url": "https://mariadb.org"
         },
         {
           "id": "redis",
           "name": "Redis",
-          "icon": "redis"
+          "icon": "redis",
+          "description": "In-memory data store used for caching, queues and fast lookups.",
+          "url": "https://redis.io"
         }
       ]
     },
@@ -167,22 +219,30 @@
         {
           "id": "docker",
           "name": "Docker",
-          "icon": "docker"
+          "icon": "docker",
+          "description": "Packages apps and their dependencies into portable containers.",
+          "url": "https://www.docker.com"
         },
         {
           "id": "linux",
           "name": "Linux",
-          "icon": "linux"
+          "icon": "linux",
+          "description": "Open-source operating system that I use for development and servers.",
+          "url": "https://www.kernel.org"
         },
         {
           "id": "git",
           "name": "Git",
-          "icon": "git"
+          "icon": "git",
+          "description": "Distributed version control system to track and share changes.",
+          "url": "https://git-scm.com"
         },
         {
           "id": "github-gitlab",
           "name": "GitHub / GitLab",
-          "icon": "github-gitlab"
+          "icon": "github",
+          "description": "Platforms to host repositories, review code and run CI pipelines.",
+          "url": "https://github.com"
         }
       ]
     },
@@ -193,72 +253,100 @@
         {
           "id": "vitest",
           "name": "Vitest",
-          "icon": "vitest"
+          "icon": "vitest",
+          "description": "Fast unit test runner that works natively with Vite.",
+          "url": "https://vitest.dev"
         },
         {
           "id": "junit",
           "name": "JUnit",
-          "icon": "junit"
+          "icon": "junit",
+          "description": "The standard unit testing framework for Java.",
+          "url": "https://junit.org/junit5/"
         },
         {
           "id": "pytest",
           "name": "pytest",
-          "icon": "pytest"
+          "icon": "pytest",
+          "description": "Simple and powerful testing framework for Python.",
+          "url": "https://docs.pytest.org"
         },
         {
           "id": "go-test",
           "name": "go test",
-          "icon": "go-test"
+          "icon": "go-test",
+          "description": "Go's built-in testing package and tooling.",
+          "url": "https://pkg.go.dev/testing"
         },
         {
           "id": "rspec",
           "name": "RSpec",
-          "icon": "rspec"
+          "icon": "rspec",
+          "description": "Behavior-driven testing framework for Ruby.",
+          "url": "https://rspec.info"
         },
         {
           "id": "mockito",
           "name": "Mockito",
-          "icon": "mockito"
+          "icon": "mockito",
+          "description": "Mocking library to isolate units in Java tests.",
+          "url": "https://site.mockito.org"
         },
         {
           "id": "biome",
           "name": "Biome",
-          "icon": "biome"
+          "icon": "biome",
+          "description": "Fast formatter and linter for JavaScript and TypeScript.",
+          "url": "https://biomejs.dev"
         },
         {
           "id": "golangci-lint",
           "name": "golangci-lint",
-          "icon": "golangci-lint"
+          "icon": "golangci-lint",
+          "description": "Fast runner that bundles many Go linters.",
+          "url": "https://golangci-lint.run"
         },
         {
           "id": "eslint",
           "name": "ESLint",
-          "icon": "eslint"
+          "icon": "eslint",
+          "description": "Pluggable linter that finds problems in JavaScript and TypeScript.",
+          "url": "https://eslint.org"
         },
         {
           "id": "ruff",
           "name": "Ruff",
-          "icon": "ruff"
+          "icon": "ruff",
+          "description": "Extremely fast Python linter and formatter.",
+          "url": "https://docs.astral.sh/ruff/"
         },
         {
           "id": "rubocop",
           "name": "RuboCop",
-          "icon": "rubocop"
+          "icon": "rubocop",
+          "description": "Ruby static code analyzer and formatter.",
+          "url": "https://rubocop.org"
         },
         {
           "id": "checkstyle",
           "name": "Checkstyle",
-          "icon": "checkstyle"
+          "icon": "checkstyle",
+          "description": "Tool that checks Java code against a coding standard.",
+          "url": "https://checkstyle.org"
         },
         {
           "id": "playwright",
           "name": "Playwright",
-          "icon": "playwright"
+          "icon": "playwright",
+          "description": "End-to-end testing across browsers with a single API.",
+          "url": "https://playwright.dev"
         },
         {
           "id": "testing-library",
           "name": "Testing Library",
-          "icon": "testing-library"
+          "icon": "testing-library",
+          "description": "Tests UI components the way users interact with them.",
+          "url": "https://testing-library.com"
         }
       ]
     },
@@ -269,32 +357,44 @@
         {
           "id": "tdd",
           "name": "TDD",
-          "icon": "tdd"
+          "icon": "tdd",
+          "description": "Write a failing test first, make it pass, then refactor.",
+          "url": "https://martinfowler.com/bliki/TestDrivenDevelopment.html"
         },
         {
           "id": "bdd",
           "name": "BDD",
-          "icon": "bdd"
+          "icon": "bdd",
+          "description": "Describe behavior in plain language that the whole team can read.",
+          "url": "https://cucumber.io/docs/bdd/"
         },
         {
           "id": "domain-driven-design",
           "name": "Domain-Driven Design (DDD)",
-          "icon": "domain-driven-design"
+          "icon": "domain-driven-design",
+          "description": "Model the software around the business domain and its language.",
+          "url": "https://martinfowler.com/bliki/DomainDrivenDesign.html"
         },
         {
           "id": "atdd",
           "name": "ATDD",
-          "icon": "atdd"
+          "icon": "atdd",
+          "description": "Drive development from acceptance tests agreed with the stakeholders.",
+          "url": "https://www.agilealliance.org/glossary/atdd/"
         },
         {
           "id": "hexagonal-architecture",
           "name": "Hexagonal Architecture",
-          "icon": "hexagonal-architecture"
+          "icon": "hexagonal-architecture",
+          "description": "Isolate the core logic from frameworks and I/O through ports and adapters.",
+          "url": "https://alistair.cockburn.us/hexagonal-architecture/"
         },
         {
           "id": "ci-cd",
           "name": "CI/CD",
-          "icon": "ci-cd"
+          "icon": "ci-cd",
+          "description": "Automate building, testing and delivering every change.",
+          "url": "https://martinfowler.com/articles/continuousIntegration.html"
         }
       ]
     },
@@ -305,37 +405,51 @@
         {
           "id": "neovim",
           "name": "NeoVim",
-          "icon": "neovim"
+          "icon": "neovim",
+          "description": "Extensible, keyboard-driven text editor based on Vim.",
+          "url": "https://neovim.io"
         },
         {
           "id": "webstorm",
           "name": "WebStorm",
-          "icon": "webstorm"
+          "icon": "webstorm",
+          "description": "JetBrains IDE for JavaScript and TypeScript.",
+          "url": "https://www.jetbrains.com/webstorm/"
         },
         {
           "id": "intellij-idea",
           "name": "IntelliJ IDEA",
-          "icon": "intellij-idea"
+          "icon": "intellij-idea",
+          "description": "JetBrains IDE for Java and Kotlin.",
+          "url": "https://www.jetbrains.com/idea/"
         },
         {
           "id": "eclipse",
           "name": "Eclipse",
-          "icon": "eclipse"
+          "icon": "eclipse",
+          "description": "Open-source IDE widely used for Java development.",
+          "url": "https://www.eclipse.org/ide/"
         },
         {
           "id": "zed",
           "name": "Zed",
-          "icon": "zed"
+          "icon": "zed",
+          "description": "Fast, collaborative code editor written in Rust.",
+          "url": "https://zed.dev"
         },
         {
           "id": "dbeaver",
           "name": "DBeaver",
-          "icon": "dbeaver"
+          "icon": "dbeaver",
+          "description": "Universal database client to explore and query many databases.",
+          "url": "https://dbeaver.io"
         },
         {
           "id": "postman",
           "name": "Postman",
-          "icon": "postman"
+          "icon": "postman",
+          "description": "Tool to design, call and test APIs.",
+          "url": "https://www.postman.com"
         }
       ]
     }

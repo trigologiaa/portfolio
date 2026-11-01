@@ -3,7 +3,8 @@ import type { JSX } from "react/jsx-runtime";
 import { Mdx } from "@/components/mdx/mdx";
 import { AboutSection } from "@/components/sections/about-section";
 import { Hero } from "@/components/sections/hero";
-import { getAbout, getProfile } from "@/lib/content";
+import { StackSection } from "@/components/sections/stack-section";
+import { getAbout, getProfile, getStack } from "@/lib/content";
 
 function Placeholder({
   id,
@@ -28,6 +29,7 @@ export default async function Home({
   const nav = await getTranslations({ locale, namespace: "Nav" });
   const profile = getProfile(locale);
   const aboutSource = getAbout(locale);
+  const stackSource = getStack(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
       <Hero profile={profile} />
@@ -35,7 +37,7 @@ export default async function Home({
       <AboutSection highlights={profile.highlights}>
         <Mdx source={aboutSource} />
       </AboutSection>
-      <Placeholder id="stack" title={nav("stack")} />
+      <StackSection stack={stackSource} />
       <Placeholder id="experience" title={nav("experience")} />
       <Placeholder id="contact" title={nav("contact")} />
     </main>

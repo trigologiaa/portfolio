@@ -45,5 +45,9 @@
   "About": {
     "title": "Sobre mí",
     "highlights": "Datos rápidos"
+  },
+  "Stack": {
+    "title": "Stack",
+    "officialSite": "Sitio oficial"
   }
 }

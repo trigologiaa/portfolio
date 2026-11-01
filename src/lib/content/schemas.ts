@@ -1,4 +1,5 @@
 import z, { type ZodObject, type ZodString, type ZodType } from "zod";
+import { type IconKey, iconKeys } from "./icon-keys";
 
 const ISO_DATE_REGEX: RegExp =
   /^\d{4}-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?$/;
@@ -35,8 +36,9 @@ export interface Profile {
 export interface StackItem {
   id: string;
   name: string;
-  icon: string;
-  url?: string | undefined;
+  icon: IconKey;
+  description: string;
+  url: string;
 }
 
 export interface StackCategory {
@@ -99,8 +101,9 @@ export const profileSchema: ZodType<Profile> = z.object({
 export const stackItemSchema: ZodType<StackItem> = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  icon: z.string().min(1),
-  url: z.url().optional(),
+  icon: z.enum(iconKeys),
+  description: z.string().min(1),
+  url: z.url(),
 });
 
 export const stackSchema: ZodType<Stack> = z.object({
