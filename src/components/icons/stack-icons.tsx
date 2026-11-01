@@ -120,6 +120,43 @@ export const stackIcons: Record<IconKey, IconType> = {
   zed: SiZedindustries,
 };
 
+export const stackIconColors: Partial<Record<IconKey, string>> = {
+  typescript: "#3178C6",
+  javascript: "#F7DF1E",
+  react: "#61DAFB",
+  tailwind: "#06B6D4",
+  html5: "#E34F26",
+  css3: "#1572B6",
+  nodejs: "#5FA04E",
+  python: "#3776AB",
+  postgresql: "#4169E1",
+  docker: "#2496ED",
+  git: "#F05032",
+  bash: "#4EAA25",
+  c: "#A8B9CC",
+  go: "#00ADD8",
+  "golangci-lint": "#00ADD8",
+  java: "#ED8B00",
+  junit: "#25A162",
+  jwt: "#D63AFF",
+  linux: "#FCC624",
+  mysql: "#4479A1",
+  neovim: "#57A143",
+  postman: "#FF6C37",
+  pytest: "#0A9EDC",
+  redis: "#FF4438",
+  ruby: "#CC342D",
+  "ruby-on-rails": "#D30001",
+  ruff: "#D7FF64",
+  springboot: "#6DB33F",
+  "testing-library": "#E33332",
+  vite: "#646CFF",
+  vitest: "#6E9F18",
+  zed: "#084CCF",
+  eslint: "#4B32C3",
+  biome: "#60A5FA",
+};
+
 export function StackIcon({
   name,
   className,
@@ -128,5 +165,12 @@ export function StackIcon({
   className?: string;
 }): JSX.Element {
   const Icon: IconType = stackIcons[name];
-  return <Icon aria-hidden="true" className={className} />;
+  const color: string | undefined = stackIconColors[name];
+  return (
+    <Icon
+      aria-hidden="true"
+      className={className}
+      {...(color ? { color } : {})}
+    />
+  );
 }

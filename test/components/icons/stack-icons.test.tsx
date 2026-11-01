@@ -1,6 +1,10 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { StackIcon, stackIcons } from "@/components/icons/stack-icons";
+import {
+  StackIcon,
+  stackIconColors,
+  stackIcons,
+} from "@/components/icons/stack-icons";
 import { iconKeys } from "@/lib/content/icon-keys";
 
 describe("stack icons", (): void => {
@@ -13,5 +17,16 @@ describe("stack icons", (): void => {
     const svg = container.querySelector("svg");
     expect(svg).not.toBeNull();
     expect(svg).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("paints brand icons with their color and leaves the rest to inherit", (): void => {
+    const brand = render(<StackIcon name="react" />).container.querySelector(
+      "svg",
+    );
+    expect(brand).toHaveAttribute("color", stackIconColors.react);
+    const plain = render(<StackIcon name="github" />).container.querySelector(
+      "svg",
+    );
+    expect(plain).not.toHaveAttribute("color", expect.stringMatching(/^#/));
   });
 });

@@ -37,7 +37,8 @@ export interface StackItem {
   id: string;
   name: string;
   icon: IconKey;
-  url?: string | undefined;
+  description: string;
+  url: string;
 }
 
 export interface StackCategory {
@@ -101,7 +102,8 @@ export const stackItemSchema: ZodType<StackItem> = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   icon: z.enum(iconKeys),
-  url: z.url().optional(),
+  description: z.string().min(1),
+  url: z.url(),
 });
 
 export const stackSchema: ZodType<Stack> = z.object({

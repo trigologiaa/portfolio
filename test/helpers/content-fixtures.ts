@@ -32,7 +32,8 @@ export interface StackItemInput {
   id: string;
   name: string;
   icon: string;
-  url?: string;
+  description: string;
+  url: string;
 }
 
 export interface StackCategoryInput {
@@ -63,6 +64,8 @@ export const validStackItem: StackItemInput = {
   id: "react",
   name: "React",
   icon: "react",
+  description: "A UI library.",
+  url: "https://react.dev",
 };
 
 export const validStack: StackInput = {

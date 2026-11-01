@@ -11,19 +11,47 @@ const stack: Stack = {
       id: "frontend",
       name: "Frontend",
       items: [
-        { id: "react", name: "React", icon: "react" },
-        { id: "typescript", name: "TypeScript", icon: "typescript" },
+        {
+          id: "react",
+          name: "React",
+          icon: "react",
+          description: "About React.",
+          url: "https://example.com/react",
+        },
+        {
+          id: "typescript",
+          name: "TypeScript",
+          icon: "typescript",
+          description: "About TypeScript.",
+          url: "https://example.com/typescript",
+        },
       ],
     },
     {
       id: "backend",
       name: "Backend",
-      items: [{ id: "nodejs", name: "Node.js", icon: "nodejs" }],
+      items: [
+        {
+          id: "nodejs",
+          name: "Node.js",
+          icon: "nodejs",
+          description: "About Node.js.",
+          url: "https://example.com/nodejs",
+        },
+      ],
     },
     {
       id: "tools",
       name: "Tools",
-      items: [{ id: "git", name: "Git", icon: "git" }],
+      items: [
+        {
+          id: "git",
+          name: "Git",
+          icon: "git",
+          description: "About Git.",
+          url: "https://example.com/git",
+        },
+      ],
     },
   ],
 };
@@ -53,6 +81,19 @@ describe("StackSection", (): void => {
     expect(backendTab).toHaveAttribute("aria-selected", "true");
     expect(screen.getByText("Node.js")).toBeVisible();
     expect(screen.queryByText("React")).not.toBeInTheDocument();
+  });
+
+  it("shows a description and the official link when hovering an item", async (): Promise<void> => {
+    const user: UserEvent = userEvent.setup();
+    renderWithProviders(<StackSection stack={stack} />);
+    await user.hover(screen.getByRole("link", { name: "React" }));
+    expect(await screen.findByText("About React.")).toBeVisible();
+    const links = screen.getAllByRole("link", { name: /React|Official site/ });
+    for (const link of links) {
+      expect(link).toHaveAttribute("href", "https://example.com/react");
+      expect(link).toHaveAttribute("target", "_blank");
+      expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
+    }
   });
 
   it("does not show levels, percentages or years of experience", (): void => {

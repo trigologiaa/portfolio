@@ -30,6 +30,8 @@ const stackWith = (icon: string): RawStack => ({
           id: "i",
           name: "I",
           icon,
+          description: "D",
+          url: "https://example.com",
         },
       ],
     },
