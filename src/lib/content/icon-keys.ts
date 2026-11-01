@@ -1,4 +1,4 @@
-export const iconKeys: readonly string[] = [
+export const iconKeys = [
   "typescript",
   "javascript",
   "react",
@@ -56,6 +56,6 @@ export const iconKeys: readonly string[] = [
   "vitest",
   "webstorm",
   "zed",
-];
+] as const;
 
 export type IconKey = (typeof iconKeys)[number];
