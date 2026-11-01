@@ -1,9 +1,26 @@
 import { describe, expect, it } from "vitest";
 import type { ZodSafeParseResult } from "zod";
 import { iconKeys } from "@/lib/content/icon-keys";
-import { type Stack, stackSchema } from "@/lib/content/schemas";
+import {
+  type Stack,
+  type StackCategory,
+  type StackItem,
+  stackSchema,
+} from "@/lib/content/schemas";
 
-const stackWith = (icon: string): Stack => ({
+interface RawStackItem extends Omit<StackItem, "icon"> {
+  icon: string;
+}
+
+interface RawStackCategory extends Omit<StackCategory, "items"> {
+  items: RawStackItem[];
+}
+
+interface RawStack {
+  categories: RawStackCategory[];
+}
+
+const stackWith = (icon: string): RawStack => ({
   categories: [
     {
       id: "c",

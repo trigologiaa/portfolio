@@ -1,5 +1,5 @@
 import z, { type ZodObject, type ZodString, type ZodType } from "zod";
-import { iconKeys } from "./icon-keys";
+import { type IconKey, iconKeys } from "./icon-keys";
 
 const ISO_DATE_REGEX: RegExp =
   /^\d{4}-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?$/;
@@ -36,7 +36,7 @@ export interface Profile {
 export interface StackItem {
   id: string;
   name: string;
-  icon: string;
+  icon: IconKey;
   url?: string | undefined;
 }
 
