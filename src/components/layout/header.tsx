@@ -15,7 +15,7 @@ export function Header(): ReactElement {
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-center justify-between gap-4 px-4">
         <Link
           href="/"
-          className="inline-flex min-h-11 items-center justify-between gap-4 px-4"
+          className="inline-flex min-h-11 items-center justify-between gap-4 px-0 sm:px-4"
         >
           {siteConfig.name}
         </Link>
