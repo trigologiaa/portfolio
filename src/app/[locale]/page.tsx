@@ -41,7 +41,6 @@ export default async function Home({
       </AboutSection>
       <StackSection stack={stackSource} />
       <TimelineSection entries={timeline.entries} />
-      <Placeholder id="experience" title={nav("experience")} />
       <Placeholder id="contact" title={nav("contact")} />
     </main>
   );
