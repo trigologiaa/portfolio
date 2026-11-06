@@ -49,5 +49,14 @@
   "Stack": {
     "title": "Stack",
     "officialSite": "Official site"
+  },
+  "Timeline": {
+    "title": "Experience & education",
+    "filter": "Filter by type",
+    "all": "All",
+    "education": "Education",
+    "course": "Courses",
+    "work": "Work",
+    "present": "Present"
   }
 }
