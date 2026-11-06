@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { TimelineEntry } from "@/lib/content";
-import { availableTypes, sortEntries } from "@/lib/timeline";
+import { availableTypes, formatPeriod, sortEntries } from "@/lib/timeline";
 
 function entry(
   overrides: Partial<TimelineEntry> & { id: string },
@@ -65,5 +65,34 @@ describe("availableTypes", (): void => {
 
   it("returns an empty list when there are no entries", (): void => {
     expect(availableTypes([])).toEqual([]);
+  });
+});
+
+describe("formatPeriod", (): void => {
+  it("formats a closed period in English", (): void => {
+    expect(
+      formatPeriod({ start: "2020-03", end: "2022-12" }, "en", "Present"),
+    ).toBe("Mar 2020 - Dec 2022");
+  });
+
+  it("uses the present label for an ongoing entry", (): void => {
+    expect(formatPeriod({ start: "2023-02" }, "en", "Present")).toBe(
+      "Feb 2023 - Present",
+    );
+    expect(formatPeriod({ start: "2023-02" }, "es", "Actualidad")).toMatch(
+      /2023 - Actualidad$/,
+    );
+  });
+
+  it("formats in Spanish", (): void => {
+    expect(
+      formatPeriod({ start: "2020-03", end: "2022-12" }, "es", "Actualidad"),
+    ).toMatch(/^mar\.? 2020 - dic\.? 2022$/i);
+  });
+
+  it("does not shift the month in negative time zones (dates are UTC)", (): void => {
+    expect(
+      formatPeriod({ start: "2021-01-01", end: "2021-01-31" }, "en", "Present"),
+    ).toBe("Jan 2021 - Jan 2021");
   });
 });
