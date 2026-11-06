@@ -1,4 +1,5 @@
 import { screen, within } from "@testing-library/react";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { TimelineSection } from "@/components/sections/timeline-section";
 import type { TimelineEntry } from "@/lib/content";
@@ -63,5 +64,54 @@ describe("TimelineSection", (): void => {
       },
     );
     expect(screen.getByText(/Actualidad$/)).toBeInTheDocument();
+  });
+
+  it("filters by type with the chips", async (): Promise<void> => {
+    const user: UserEvent = userEvent.setup();
+    renderWithProviders(
+      <TimelineSection
+        entries={[
+          entry({ id: "school", type: "education" }),
+          entry({ id: "job", type: "work", start: "2022-01" }),
+        ]}
+      />,
+    );
+    await user.click(screen.getByRole("button", { name: "Work" }));
+    expect(screen.getByRole("button", { name: "Work" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(screen.getByText("Title job")).toBeInTheDocument();
+    expect(screen.queryByText("Title school")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "All" }));
+    expect(screen.getByText("Title school")).toBeInTheDocument();
+  });
+
+  it("does not offer a Work chip when there are no work entries", (): void => {
+    renderWithProviders(
+      <TimelineSection
+        entries={[
+          entry({ id: "a", type: "education" }),
+          entry({ id: "b", type: "course" }),
+        ]}
+      />,
+    );
+    expect(
+      screen.getByRole("button", { name: "Education" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Courses" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Work" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows no filter at all when there is a single type, and no error either", (): void => {
+    renderWithProviders(
+      <TimelineSection entries={[entry({ id: "a", type: "education" })]} />,
+    );
+    expect(
+      screen.queryByRole("group", { name: "Filter by type" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("Title a")).toBeInTheDocument();
   });
 });

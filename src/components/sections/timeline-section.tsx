@@ -1,9 +1,12 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import type { ReactElement } from "react";
+import { type ReactElement, useState } from "react";
 import type { TimelineEntry } from "@/lib/content";
-import { formatPeriod, sortEntries } from "@/lib/timeline";
+import { availableTypes, formatPeriod, sortEntries } from "@/lib/timeline";
+import { Button } from "../ui/button";
+
+type Filter = "all" | TimelineEntry["type"];
 
 export function TimelineSection({
   entries,
@@ -13,7 +16,11 @@ export function TimelineSection({
   const t: ReturnType<typeof useTranslations<"Timeline">> =
     useTranslations("Timeline");
   const locale: string = useLocale();
-  const sorted: TimelineEntry[] = sortEntries(entries);
+  const [filter, setFilter] = useState<Filter>("all");
+  const types: TimelineEntry["type"][] = availableTypes(entries);
+  const visible: TimelineEntry[] = sortEntries(entries).filter(
+    (entry) => filter === "all" || entry.type === filter,
+  );
   return (
     <section
       id="experience"
@@ -23,11 +30,30 @@ export function TimelineSection({
       <h2 id="experience-title" className="text-2xl font-semibold">
         {t("title")}
       </h2>
+      {types.length > 1 && (
+        <fieldset
+          aria-label={t("filter")}
+          className="mt-6 flex flex-wrap gap-2"
+        >
+          {(["all", ...types] as const).map((value) => (
+            <Button
+              key={value}
+              type="button"
+              size="sm"
+              variant={filter === value ? "secondary" : "outline"}
+              aria-pressed={filter === value}
+              onClick={() => setFilter(value)}
+            >
+              {t(value)}
+            </Button>
+          ))}
+        </fieldset>
+      )}
       <ol
         aria-label={t("title")}
         className="mt-8 space-y-8 border-l border-border pl-6"
       >
-        {sorted.map((entry) => (
+        {visible.map((entry) => (
           <li key={entry.id} className="relative">
             <span
               aria-hidden="true"
