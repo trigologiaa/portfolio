@@ -30,7 +30,7 @@ export function availableTypes(
 }
 
 export function formatPeriod(
-  period: { start: string; end?: string },
+  period: { start: string; end?: string | undefined },
   locale: string,
   presentLabel: string,
 ): string {
