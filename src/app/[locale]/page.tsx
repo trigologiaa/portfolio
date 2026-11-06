@@ -4,7 +4,8 @@ import { Mdx } from "@/components/mdx/mdx";
 import { AboutSection } from "@/components/sections/about-section";
 import { Hero } from "@/components/sections/hero";
 import { StackSection } from "@/components/sections/stack-section";
-import { getAbout, getProfile, getStack } from "@/lib/content";
+import { TimelineSection } from "@/components/sections/timeline-section";
+import { getAbout, getProfile, getStack, getTimeline } from "@/lib/content";
 
 function Placeholder({
   id,
@@ -30,6 +31,7 @@ export default async function Home({
   const profile = getProfile(locale);
   const aboutSource = getAbout(locale);
   const stackSource = getStack(locale);
+  const timeline = getTimeline(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
       <Hero profile={profile} />
@@ -38,6 +40,7 @@ export default async function Home({
         <Mdx source={aboutSource} />
       </AboutSection>
       <StackSection stack={stackSource} />
+      <TimelineSection entries={timeline.entries} />
       <Placeholder id="experience" title={nav("experience")} />
       <Placeholder id="contact" title={nav("contact")} />
     </main>
