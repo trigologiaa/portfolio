@@ -1,0 +1,226 @@
+[
+  {
+    "name": "shop-api",
+    "description": "REST API for an online shop with authentication and payments",
+    "url": "https://github.com/ada/shop-api",
+    "homepage": "https://shop-api.example.dev",
+    "topics": ["api", "nodejs", "typescript", "postgres"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 52000,
+      "SQL": 3000
+    },
+    "stars": 12,
+    "forks": 3,
+    "pushedAt": "2026-09-28T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "weather-dashboard",
+    "description": "Weather dashboard with charts and saved cities",
+    "url": "https://github.com/ada/weather-dashboard",
+    "homepage": "https://weather.example.dev",
+    "topics": ["react", "charts", "api"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 30000,
+      "CSS": 4000
+    },
+    "stars": 5,
+    "forks": 1,
+    "pushedAt": "2026-09-10T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "task-board",
+    "description": "Kanban board with drag and drop",
+    "url": "https://github.com/ada/task-board",
+    "homepage": "https://tasks.example.dev",
+    "topics": ["react", "dnd", "typescript"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 28000,
+      "CSS": 2500
+    },
+    "stars": 3,
+    "forks": 0,
+    "pushedAt": "2026-08-20T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "chat-app",
+    "description": "Realtime chat using WebSockets",
+    "url": "https://github.com/ada/chat-app",
+    "homepage": null,
+    "topics": ["websocket", "nodejs"],
+    "language": "JavaScript",
+    "languages": {
+      "JavaScript": 18000,
+      "HTML": 2000
+    },
+    "stars": 1,
+    "forks": 0,
+    "pushedAt": "2026-06-15T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "cli-tools",
+    "description": "Small command line utilities written in Python",
+    "url": "https://github.com/ada/cli-tools",
+    "homepage": null,
+    "topics": ["python", "cli", "automation"],
+    "language": "Python",
+    "languages": {
+      "Python": 9000
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-05-02T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "blog-engine",
+    "description": "Static blog generator with Markdown and MDX support",
+    "url": "https://github.com/ada/blog-engine",
+    "homepage": "https://blog-engine.example.dev",
+    "topics": ["markdown", "nextjs", "mdx"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 22000
+    },
+    "stars": 7,
+    "forks": 2,
+    "pushedAt": "2026-07-01T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "dotfiles",
+    "description": null,
+    "url": "https://github.com/ada/dotfiles",
+    "homepage": null,
+    "topics": [],
+    "language": "Shell",
+    "languages": {
+      "Shell": 4000
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2024-01-10T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "algorithms",
+    "description": "Practice of algorithms and data structures",
+    "url": "https://github.com/ada/algorithms",
+    "homepage": null,
+    "topics": ["algorithms"],
+    "language": "Python",
+    "languages": {
+      "Python": 12000
+    },
+    "stars": 2,
+    "forks": 0,
+    "pushedAt": "2025-02-14T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "portfolio-v1",
+    "description": "My first portfolio",
+    "url": "https://github.com/ada/portfolio-v1",
+    "homepage": "https://ada.example.dev",
+    "topics": ["html", "css"],
+    "language": "HTML",
+    "languages": {
+      "HTML": 6000,
+      "CSS": 5000
+    },
+    "stars": 1,
+    "forks": 0,
+    "pushedAt": "2025-03-01T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "recipe-finder",
+    "description": "Find recipes by the ingredients you have at home",
+    "url": "https://github.com/ada/recipe-finder",
+    "homepage": "https://recipes.example.dev",
+    "topics": ["react", "api", "tailwind"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 15000,
+      "CSS": 1500
+    },
+    "stars": 4,
+    "forks": 1,
+    "pushedAt": "2026-09-22T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "forked-lib",
+    "description": "A fork of a useful library",
+    "url": "https://github.com/ada/forked-lib",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript",
+    "languages": {},
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-01-05T10:00:00Z",
+    "isFork": true,
+    "isArchived": false,
+    "hasReadme": false
+  },
+  {
+    "name": "legacy-site",
+    "description": "Old website, not maintained anymore",
+    "url": "https://github.com/ada/legacy-site",
+    "homepage": null,
+    "topics": [],
+    "language": "PHP",
+    "languages": {},
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2022-04-01T10:00:00Z",
+    "isFork": false,
+    "isArchived": true,
+    "hasReadme": false
+  },
+  {
+    "name": "portfolio",
+    "description": "This portfolio",
+    "url": "https://github.com/ada/portfolio",
+    "homepage": "https://portfolio.example.dev",
+    "topics": ["nextjs", "typescript", "portfolio"],
+    "language": "TypeScript",
+    "languages": {
+      "TypeScript": 40000,
+      "CSS": 3000
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-10-10T10:00:00Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  }
+]
