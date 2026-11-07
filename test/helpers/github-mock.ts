@@ -42,7 +42,7 @@ interface Scenario {
   delayMs?: number;
 }
 
-type FetchMock = Mock<
+export type FetchMock = Mock<
   (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>
 >;
 
