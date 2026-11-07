@@ -27,6 +27,18 @@ const config: GithubConfig = {
   dataSource: "api",
 };
 
+type NextRequestInit = RequestInit & {
+  next?: { revalidate: number; tags: string[] };
+};
+
+function firstRequestInit(fetchMock: FetchMock): NextRequestInit {
+  return (fetchMock.mock.calls[0]?.[1] ?? {}) as NextRequestInit;
+}
+
+function firstRequestHeaders(fetchMock: FetchMock): Record<string, string> {
+  return (firstRequestInit(fetchMock).headers ?? {}) as Record<string, string>;
+}
+
 describe("fetchRepositories", (): void => {
   it("normalizes the repositories returned by the API", async (): Promise<void> => {
     const fetchMock: FetchMock = makeFetch({
@@ -169,6 +181,29 @@ describe("fetchRepositories", (): void => {
     expect(await fetchRepositories(config, fetchMock)).toEqual({
       ok: false,
       error: "unavailable",
+    });
+  });
+
+  it("sends the token as a bearer header when it is configured", async (): Promise<void> => {
+    const fetchMock: FetchMock = makeFetch({ repos: [] });
+    await fetchRepositories({ ...config, token: "secret-token" }, fetchMock);
+    expect(firstRequestHeaders(fetchMock).Authorization).toBe(
+      "Bearer secret-token",
+    );
+  });
+
+  it("does not send an Authorization header without a token", async (): Promise<void> => {
+    const fetchMock: FetchMock = makeFetch({ repos: [] });
+    await fetchRepositories(config, fetchMock);
+    expect(firstRequestHeaders(fetchMock)).not.toHaveProperty("Authorization");
+  });
+
+  it("asks Next.js to cache the response for an hour and tags it for on-demand refresh", async (): Promise<void> => {
+    const fetchMock: FetchMock = makeFetch({ repos: [] });
+    await fetchRepositories(config, fetchMock);
+    expect(firstRequestInit(fetchMock).next).toEqual({
+      revalidate: 3600,
+      tags: ["github"],
     });
   });
 });
