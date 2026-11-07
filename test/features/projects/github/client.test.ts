@@ -3,8 +3,10 @@
 import { describe, expect, it } from "vitest";
 import { fetchRepositories } from "@/features/projects/github/client";
 import type { GithubConfig } from "@/features/projects/github/config";
+import type { RepositoriesResult } from "@/features/projects/types";
 import {
   type FetchMock,
+  jsonResponse,
   makeFetch,
   rawRepo,
 } from "../../../helpers/github-mock";
@@ -12,6 +14,11 @@ import {
 const REPO_COUNT: number = 3;
 const TYPESCRIPT_BYTES: number = 9000;
 const CSS_BYTES: number = 1000;
+const MANY_REPOS_COUNT: number = 10;
+const DETAIL_CONCURRENCY: number = 2;
+const REQUESTS_PER_REPO: number = 2;
+const MAX_IN_FLIGHT: number = DETAIL_CONCURRENCY * REQUESTS_PER_REPO;
+const SLOW_RESPONSE_MS: number = 5;
 
 // biome-ignore-start lint/style/useNamingConvention: GitHub language names are PascalCase
 const ALPHA_LANGUAGES: Record<string, number> = {
@@ -205,5 +212,51 @@ describe("fetchRepositories", (): void => {
       revalidate: 3600,
       tags: ["github"],
     });
+  });
+
+  it("limits how many requests run at the same time", async (): Promise<void> => {
+    let inFlight: number = 0;
+    let peak: number = 0;
+    const repos: Record<string, unknown>[] = Array.from(
+      { length: MANY_REPOS_COUNT },
+      (_: unknown, i: number): Record<string, unknown> =>
+        rawRepo({ name: `repo-${i}` }),
+    );
+    const slowFetch: typeof fetch = async (
+      input: RequestInfo | URL,
+    ): Promise<Response> => {
+      const { pathname } = new URL(String(input));
+      if (pathname.endsWith("/repos")) {
+        return jsonResponse(repos);
+      }
+      inFlight++;
+      peak = Math.max(peak, inFlight);
+      await new Promise((resolve) => setTimeout(resolve, SLOW_RESPONSE_MS));
+      inFlight--;
+      return jsonResponse({});
+    };
+    await fetchRepositories(config, slowFetch);
+    expect(peak).toBeLessThanOrEqual(MAX_IN_FLIGHT);
+  });
+
+  it("makes 1 + 2 requests per visible repository and none for forks or archived ones", async (): Promise<void> => {
+    const fetchMock: FetchMock = makeFetch({
+      repos: [
+        rawRepo({ name: "mine" }),
+        rawRepo({ name: "forked", fork: true }),
+        rawRepo({ name: "old", archived: true }),
+      ],
+    });
+    const result: RepositoriesResult = await fetchRepositories(
+      config,
+      fetchMock,
+    );
+    expect(fetchMock).toHaveBeenCalledTimes(1 + 2);
+    expect(result.ok && result.data.map((repo) => repo.name)).toEqual([
+      "mine",
+      "forked",
+      "old",
+    ]);
+    expect(result.ok && result.data[1]?.isFork).toBe(true);
   });
 });
