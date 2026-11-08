@@ -45,6 +45,17 @@ function topicsPoints(count: number, config: ScoringConfig): number {
   return Math.round(config.weights.topics * ratio);
 }
 
+function popularityPoints(
+  stars: number,
+  forks: number,
+  config: ScoringConfig,
+): number {
+  const total: number = Math.max(0, stars + forks);
+  const ratio: number =
+    Math.log10(1 + total) / Math.log10(1 + config.popularityCap);
+  return Math.round(config.weights.popularity * Math.min(1, ratio));
+}
+
 export function scoreRepository(
   repo: Repository,
   now: Date,
@@ -60,7 +71,7 @@ export function scoreRepository(
         : 0,
     recency: recencyPoints(repo.pushedAt, now, config),
     topics: topicsPoints(repo.topics.length, config),
-    popularity: 0,
+    popularity: popularityPoints(repo.stars, repo.forks, config),
   };
   const score: number = Object.values(breakdown).reduce(
     (sum: number, points: number): number => sum + points,

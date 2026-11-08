@@ -126,3 +126,31 @@ describe("scoreRepository: topics", (): void => {
     expect(topics(EXTRA_TOPICS_COUNT)).toBe(TOPICS_FULL_POINTS);
   });
 });
+
+const POPULARITY_FULL_POINTS: number = 10;
+const POPULARITY_SIX_POINTS: number = 6;
+const TEN_STARS: number = 10;
+const EIGHT_STARS: number = 8;
+const TWO_FORKS: number = 2;
+const POPULARITY_CAP_STARS: number = 50;
+const HUGE_STARS: number = 10_000;
+
+describe("scoreRepository: popularity", (): void => {
+  const popularity = (stars: number, forks: number = 0): number =>
+    scoreRepository(makeRepo({ stars, forks }), NOW).breakdown.popularity;
+
+  it("is zero without stars or forks", (): void => {
+    expect(popularity(0)).toBe(NO_POINTS);
+  });
+
+  it("grows with stars and forks, quickly at first", (): void => {
+    expect(popularity(1)).toBe(2);
+    expect(popularity(TEN_STARS)).toBe(POPULARITY_SIX_POINTS);
+    expect(popularity(EIGHT_STARS, TWO_FORKS)).toBe(POPULARITY_SIX_POINTS);
+  });
+
+  it("stops growing at the cap", (): void => {
+    expect(popularity(POPULARITY_CAP_STARS)).toBe(POPULARITY_FULL_POINTS);
+    expect(popularity(HUGE_STARS)).toBe(POPULARITY_FULL_POINTS);
+  });
+});
