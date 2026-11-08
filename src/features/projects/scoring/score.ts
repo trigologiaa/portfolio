@@ -82,3 +82,33 @@ export function scoreRepository(
     breakdown,
   };
 }
+
+export type ScoredRepository = ScoreResult & { repository: Repository };
+
+export function compareScored(
+  a: ScoredRepository,
+  b: ScoredRepository,
+): number {
+  if (a.score !== b.score) {
+    return b.score - a.score;
+  }
+  const pushedA: number = new Date(a.repository.pushedAt).getTime() || 0;
+  const pushedB: number = new Date(b.repository.pushedAt).getTime() || 0;
+  if (pushedA !== pushedB) {
+    return pushedB - pushedA;
+  }
+  return a.repository.name.localeCompare(b.repository.name);
+}
+
+export function rankRepositories(
+  repos: readonly Repository[],
+  now: Date,
+  config: ScoringConfig = scoringConfig,
+): ScoredRepository[] {
+  return repos
+    .map((repository) => ({
+      repository,
+      ...scoreRepository(repository, now, config),
+    }))
+    .sort(compareScored);
+}
