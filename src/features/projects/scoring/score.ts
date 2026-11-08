@@ -40,6 +40,11 @@ function recencyPoints(
   return Math.round(config.weights.recency * remaining);
 }
 
+function topicsPoints(count: number, config: ScoringConfig): number {
+  const ratio = Math.min(count, config.topicsForFull) / config.topicsForFull;
+  return Math.round(config.weights.topics * ratio);
+}
+
 export function scoreRepository(
   repo: Repository,
   now: Date,
@@ -54,7 +59,7 @@ export function scoreRepository(
         ? weights.description
         : 0,
     recency: recencyPoints(repo.pushedAt, now, config),
-    topics: 0,
+    topics: topicsPoints(repo.topics.length, config),
     popularity: 0,
   };
   const score: number = Object.values(breakdown).reduce(

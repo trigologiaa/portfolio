@@ -9,6 +9,19 @@ const README_POINTS: number = 20;
 const DESCRIPTION_POINTS: number = 15;
 const MIN_DESCRIPTION_LENGTH: number = 20;
 const NO_POINTS: number = 0;
+const TOPICS_FULL_POINTS: number = 10;
+const TOPICS_ONE_POINTS: number = 3;
+const TOPICS_TWO_POINTS: number = 7;
+const TOPICS_FOR_FULL: number = 3;
+const EXTRA_TOPICS_COUNT: number = 8;
+const RECENCY_POINTS: number = 20;
+const RECENCY_HALF_POINTS: number = 10;
+const RECENCY_FULL_DAYS: number = 90;
+const RECENCY_ZERO_DAYS: number = 730;
+const RECENCY_MIDPOINT_DAYS: number = 410;
+const RECENT_PUSH_DAYS: number = 10;
+const FUTURE_PUSH_DAYS: number = -5;
+const VERY_OLD_PUSH_DAYS: number = 3000;
 
 describe("scoreRepository: completeness signals", (): void => {
   it("gives 25 points for a live demo", (): void => {
@@ -56,15 +69,6 @@ describe("scoreRepository: completeness signals", (): void => {
   });
 });
 
-const RECENCY_POINTS: number = 20;
-const RECENCY_HALF_POINTS: number = 10;
-const RECENCY_FULL_DAYS: number = 90;
-const RECENCY_ZERO_DAYS: number = 730;
-const RECENCY_MIDPOINT_DAYS: number = 410;
-const RECENT_PUSH_DAYS: number = 10;
-const FUTURE_PUSH_DAYS: number = -5;
-const VERY_OLD_PUSH_DAYS: number = 3000;
-
 describe("scoreRepository: recent activity", (): void => {
   const recency = (days: number): number =>
     scoreRepository(makeRepo({ pushedAt: daysAgo(days) }), NOW).breakdown
@@ -96,5 +100,29 @@ describe("scoreRepository: recent activity", (): void => {
       scoreRepository(makeRepo({ pushedAt: "not a date" }), NOW).breakdown
         .recency,
     ).toBe(NO_POINTS);
+  });
+});
+
+describe("scoreRepository: topics", (): void => {
+  const topics = (count: number): number =>
+    scoreRepository(
+      makeRepo({
+        topics: Array.from(
+          { length: count },
+          (_: unknown, index: number): string => `t${index}`,
+        ),
+      }),
+      NOW,
+    ).breakdown.topics;
+
+  it("is proportional up to 3 topics", (): void => {
+    expect(topics(0)).toBe(NO_POINTS);
+    expect(topics(1)).toBe(TOPICS_ONE_POINTS);
+    expect(topics(2)).toBe(TOPICS_TWO_POINTS);
+    expect(topics(TOPICS_FOR_FULL)).toBe(TOPICS_FULL_POINTS);
+  });
+
+  it("does not give more for additional topics", (): void => {
+    expect(topics(EXTRA_TOPICS_COUNT)).toBe(TOPICS_FULL_POINTS);
   });
 });
