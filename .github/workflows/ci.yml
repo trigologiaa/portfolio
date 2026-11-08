@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+env:
+  GH_DATA_SOURCE: fixture
+
 jobs:
   ci:
     name: ci
