@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "tsx scripts/check-env.ts && next build",
     "content:check": "tsx scripts/validate-content.ts",
     "dev": "next dev",
     "format": "biome format --write",
@@ -41,6 +41,7 @@
     "@biomejs/biome": "2.4.2",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
+    "@next/env": "^16.4.5",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/turbopack": "^4",
     "@testing-library/dom": "^10.4.2",
@@ -62,7 +63,7 @@
     "typescript": "^5",
     "vitest": "^5.0.5"
   },
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.18.0",
   "engines": {
     "node": ">=24.22.0"
   }
