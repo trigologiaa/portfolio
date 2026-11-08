@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { scoreRepository } from "@/features/projects/scoring/score";
+import type { Repository } from "@/features/projects/types";
 import { daysAgo, makeRepo, NOW } from "../../../helpers/repo-factory";
 
 type ScoredRepository = ReturnType<typeof scoreRepository>;
@@ -22,6 +23,23 @@ const RECENCY_MIDPOINT_DAYS: number = 410;
 const RECENT_PUSH_DAYS: number = 10;
 const FUTURE_PUSH_DAYS: number = -5;
 const VERY_OLD_PUSH_DAYS: number = 3000;
+const POPULARITY_FULL_POINTS: number = 10;
+const POPULARITY_SIX_POINTS: number = 6;
+const TEN_STARS: number = 10;
+const EIGHT_STARS: number = 8;
+const TWO_FORKS: number = 2;
+const POPULARITY_CAP_STARS: number = 50;
+const HUGE_STARS: number = 10_000;
+const MIN_COMPLETE_SCORE: number = 85;
+const COMPLETE_REPO_PUSH_DAYS: number = 10;
+const DAYS_PER_YEAR: number = 365;
+const OLD_REPO_YEARS: number = 3;
+const MID_AGE_PUSH_DAYS: number = 200;
+const RECENT_PUSH_DAYS_FOR_CLOCK: number = 60;
+const CLOCK_SHIFT_DAYS: number = 400;
+const FAMOUS_FORKS: number = 500;
+const MS_PER_SECOND_FOR_DAYS: number = 1000;
+const MS_PER_DAY: number = 24 * 60 * 60 * MS_PER_SECOND_FOR_DAYS;
 
 describe("scoreRepository: completeness signals", (): void => {
   it("gives 25 points for a live demo", (): void => {
@@ -127,14 +145,6 @@ describe("scoreRepository: topics", (): void => {
   });
 });
 
-const POPULARITY_FULL_POINTS: number = 10;
-const POPULARITY_SIX_POINTS: number = 6;
-const TEN_STARS: number = 10;
-const EIGHT_STARS: number = 8;
-const TWO_FORKS: number = 2;
-const POPULARITY_CAP_STARS: number = 50;
-const HUGE_STARS: number = 10_000;
-
 describe("scoreRepository: popularity", (): void => {
   const popularity = (stars: number, forks: number = 0): number =>
     scoreRepository(makeRepo({ stars, forks }), NOW).breakdown.popularity;
@@ -152,5 +162,68 @@ describe("scoreRepository: popularity", (): void => {
   it("stops growing at the cap", (): void => {
     expect(popularity(POPULARITY_CAP_STARS)).toBe(POPULARITY_FULL_POINTS);
     expect(popularity(HUGE_STARS)).toBe(POPULARITY_FULL_POINTS);
+  });
+});
+
+describe("scoreRepository: total", (): void => {
+  it("scores a complete, active repository high and shows where the points come from", (): void => {
+    const result: ScoredRepository = scoreRepository(
+      makeRepo({
+        homepage: "https://demo.dev",
+        hasReadme: true,
+        description:
+          "A complete app with authentication, tests and documentation",
+        topics: ["a", "b", "c", "d"],
+        pushedAt: daysAgo(COMPLETE_REPO_PUSH_DAYS),
+      }),
+      NOW,
+    );
+    expect(result.score).toBeGreaterThanOrEqual(MIN_COMPLETE_SCORE);
+    expect(result.breakdown).toEqual({
+      demo: DEMO_POINTS,
+      readme: README_POINTS,
+      description: DESCRIPTION_POINTS,
+      recency: RECENCY_POINTS,
+      topics: TOPICS_FULL_POINTS,
+      popularity: NO_POINTS,
+    });
+  });
+
+  it("scores a bare, old repository zero", (): void => {
+    expect(
+      scoreRepository(
+        makeRepo({ pushedAt: daysAgo(OLD_REPO_YEARS * DAYS_PER_YEAR) }),
+        NOW,
+      ).score,
+    ).toBe(NO_POINTS);
+  });
+
+  it("never gives a famous repository without anything else more than the popularity weight", (): void => {
+    const result: ScoredRepository = scoreRepository(
+      makeRepo({ stars: HUGE_STARS, forks: FAMOUS_FORKS }),
+      NOW,
+    );
+    expect(result.breakdown.popularity).toBeLessThanOrEqual(
+      POPULARITY_FULL_POINTS,
+    );
+    expect(result.score).toBeLessThanOrEqual(POPULARITY_FULL_POINTS);
+  });
+
+  it("is deterministic for the same input and date", (): void => {
+    const repo: Repository = makeRepo({
+      homepage: "https://x.dev",
+      pushedAt: daysAgo(MID_AGE_PUSH_DAYS),
+    });
+    expect(scoreRepository(repo, NOW)).toEqual(scoreRepository(repo, NOW));
+  });
+
+  it("changes with the date it is evaluated at (the clock is injected)", (): void => {
+    const repo: Repository = makeRepo({
+      pushedAt: daysAgo(RECENT_PUSH_DAYS_FOR_CLOCK),
+    });
+    const later: Date = new Date(NOW.getTime() + CLOCK_SHIFT_DAYS * MS_PER_DAY);
+    expect(scoreRepository(repo, later).breakdown.recency).toBeLessThan(
+      scoreRepository(repo, NOW).breakdown.recency,
+    );
   });
 });
