@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import type { ZodSafeParseResult } from "zod";
@@ -45,4 +45,32 @@ export function loadEnrichment(
     readFileSync(filePath, "utf8"),
     `content/projects/${fileName}`,
   );
+}
+
+export function validateEnrichmentFiles(root: string): string[] {
+  const dir: string = path.join(root, "projects");
+  if (!existsSync(dir)) {
+    return [];
+  }
+  const errors: string[] = [];
+  for (const fileName of readdirSync(dir).filter((name: string) =>
+    name.endsWith(".mdx"),
+  )) {
+    const label: string = `content/projects/${fileName}`;
+    const match: RegExpExecArray | null = /^(.+)\.(en|es)\.mdx$/.exec(fileName);
+    if (!match) {
+      errors.push(`${label}: the file name must end in ".en.mdx" or ".es.mdx"`);
+      continue;
+    }
+    try {
+      parseEnrichment(readFileSync(path.join(dir, fileName), "utf8"), label);
+    } catch (error) {
+      if (error instanceof ContentError) {
+        errors.push(error.message);
+      } else {
+        throw error;
+      }
+    }
+  }
+  return errors;
 }

@@ -1,8 +1,10 @@
+import { validateEnrichmentFiles } from "./enrichment";
 import {
   ContentError,
   type ContentLocale,
   contentLocales,
   loadAbout,
+  loadCuration,
   loadProfile,
   loadStack,
   loadTimeline,
@@ -70,6 +72,8 @@ export function validateContent(root: string): string[] {
       ]);
     }
   }
+  attempt(errors, () => loadCuration(root));
+  errors.push(...validateEnrichmentFiles(root));
   errors.push(...compareIds("timeline", timelineIds));
   errors.push(...compareIds("stack", stackIds));
   return errors;
