@@ -116,3 +116,52 @@ describe("curateProjects: exclusion list", (): void => {
     expect(names(result)).toEqual(["other"]);
   });
 });
+
+describe("curateProjects: pinned repositories", (): void => {
+  const strong: Repository = visible("c-strong", {
+    homepage: "https://x.dev",
+    pushedAt: NOW.toISOString(),
+  });
+
+  it("puts pinned repositories first, in the given order", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("a"), visible("b"), strong],
+      { ...base, pin: ["b", "a"] },
+      NOW,
+    );
+    expect(names(result)).toEqual(["b", "a", "c-strong"]);
+    expect(result.map((project) => project.pinned)).toEqual([
+      true,
+      true,
+      false,
+    ]);
+  });
+
+  it("lets a pin override the default hidden", (): void => {
+    const forked: Repository = visible("forked", { isFork: true });
+    const result: Project[] = curateProjects(
+      [forked, strong],
+      { ...base, pin: ["forked"] },
+      NOW,
+    );
+    expect(names(result)).toEqual(["forked", "c-strong"]);
+  });
+
+  it("ignores pinned names that do not exist and repeated names", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("a")],
+      { ...base, pin: ["ghost", "a", "A"] },
+      NOW,
+    );
+    expect(names(result)).toEqual(["a"]);
+  });
+
+  it("does not repeat a pinned repository in the ranked part", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("a"), visible("b")],
+      { ...base, pin: ["a"] },
+      NOW,
+    );
+    expect(names(result).filter((name) => name === "a")).toHaveLength(1);
+  });
+});

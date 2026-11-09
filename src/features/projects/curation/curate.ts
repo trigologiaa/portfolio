@@ -3,7 +3,7 @@ import type { Curation } from "@/lib/content/schemas";
 import {
   rankRepositories,
   type ScoreBreakdown,
-  type ScoredRepository,
+  scoreRepository,
 } from "../scoring/score";
 import type { Repository } from "../types";
 
@@ -37,23 +37,49 @@ export function curateProjects(
   now: Date,
   enrichments: Record<string, ProjectEnrichment> = {},
 ): Project[] {
-  const excluded: Set<string> = new Set(
-    curation.exclude.map((name: string) => name.toLowerCase()),
+  const key: (name: string) => string = (name: string) => name.toLowerCase();
+  const excluded: Set<string> = new Set(curation.exclude.map(key));
+  const byName: Map<string, Repository> = new Map(
+    repos.map((repo: Repository) => [key(repo.name), repo]),
   );
+  const pinned: Repository[] = [];
+  const pinnedKeys: Set<string> = new Set<string>();
+  for (const name of curation.pin) {
+    const repo: Repository | undefined = byName.get(key(name));
+    if (
+      !repo ||
+      excluded.has(key(repo.name)) ||
+      pinnedKeys.has(key(repo.name))
+    ) {
+      continue;
+    }
+    pinnedKeys.add(key(repo.name));
+    pinned.push(repo);
+  }
   const candidates: Repository[] = repos.filter(
     (repo: Repository) =>
-      !excluded.has(repo.name.toLowerCase()) &&
+      !pinnedKeys.has(key(repo.name)) &&
+      !excluded.has(key(repo.name)) &&
       !isHiddenByDefault(repo, curation),
   );
-  return rankRepositories(candidates, now).map(
-    (item: ScoredRepository, index: number): Project => ({
-      slug: item.repository.name,
-      repository: item.repository,
-      score: item.score,
-      breakdown: item.breakdown,
+  const ordered = [
+    ...pinned.map((repository) => ({
+      repository,
+      ...scoreRepository(repository, now),
+      pinned: true,
+    })),
+    ...rankRepositories(candidates, now).map((item) => ({
+      ...item,
       pinned: false,
-      featured: index < curation.featuredCount,
-      enrichment: enrichments[item.repository.name] ?? null,
-    }),
-  );
+    })),
+  ];
+  return ordered.map((item, index) => ({
+    slug: item.repository.name,
+    repository: item.repository,
+    score: item.score,
+    breakdown: item.breakdown,
+    pinned: item.pinned,
+    featured: index < curation.featuredCount,
+    enrichment: enrichments[item.repository.name] ?? null,
+  }));
 }
