@@ -4,6 +4,7 @@ import {
   type Project,
 } from "@/features/projects/curation/curate";
 import type { Repository } from "@/features/projects/types";
+import type { ProjectEnrichment } from "@/lib/content/enrichment";
 import type { Curation } from "@/lib/content/schemas";
 import { makeRepo, NOW } from "../../../helpers/repo-factory";
 
@@ -13,6 +14,8 @@ const base: Curation = {
   featuredCount: 6,
   selfRepo: "portfolio",
 };
+const DEMO_POINTS: number = 25;
+
 const names = (projects: { slug: string }[]): string[] =>
   projects.map((project: { slug: string }): string => project.slug);
 
@@ -130,7 +133,7 @@ describe("curateProjects: pinned repositories", (): void => {
       NOW,
     );
     expect(names(result)).toEqual(["b", "a", "c-strong"]);
-    expect(result.map((project) => project.pinned)).toEqual([
+    expect(result.map((project: Project): boolean => project.pinned)).toEqual([
       true,
       true,
       false,
@@ -162,6 +165,74 @@ describe("curateProjects: pinned repositories", (): void => {
       { ...base, pin: ["a"] },
       NOW,
     );
-    expect(names(result).filter((name) => name === "a")).toHaveLength(1);
+    expect(
+      names(result).filter((name: string): boolean => name === "a"),
+    ).toHaveLength(1);
+  });
+});
+
+describe("curateProjects: featured and enrichment", (): void => {
+  const five: Repository[] = ["a", "b", "c", "d", "e"].map(
+    (name: string): Repository => visible(name),
+  );
+
+  it("marks only the first featuredCount projects as featured", (): void => {
+    const result: Project[] = curateProjects(
+      five,
+      { ...base, featuredCount: 2 },
+      NOW,
+    );
+    expect(result.map((project: Project): boolean => project.featured)).toEqual(
+      [true, true, false, false, false],
+    );
+  });
+
+  it("handles a featuredCount larger than the number of projects", (): void => {
+    const result: Project[] = curateProjects(
+      five.slice(0, 2),
+      { ...base, featuredCount: 6 },
+      NOW,
+    );
+    expect(result.every((project: Project): boolean => project.featured)).toBe(
+      true,
+    );
+  });
+
+  it("makes a pinned repository featured even with a low score", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("weak"), visible("strong", { homepage: "https://x.dev" })],
+      { ...base, pin: ["weak"], featuredCount: 1 },
+      NOW,
+    );
+    expect(result[0]).toMatchObject({
+      slug: "weak",
+      featured: true,
+      pinned: true,
+    });
+    expect(result[1]).toMatchObject({ slug: "strong", featured: false });
+  });
+
+  it("attaches the enrichment of each repository and keeps the score information", (): void => {
+    const enrichment: ProjectEnrichment = {
+      tags: [],
+      screenshots: [],
+      summary: "Hand-written summary",
+      body: "More text",
+    };
+    const result: Project[] = curateProjects(
+      [visible("a", { homepage: "https://x.dev" })],
+      base,
+      NOW,
+      {
+        a: enrichment,
+      },
+    );
+    expect(result[0]?.enrichment).toEqual(enrichment);
+    expect(result[0]?.score).toBeGreaterThan(0);
+    expect(result[0]?.breakdown.demo).toBe(DEMO_POINTS);
+  });
+
+  it("leaves the enrichment empty when there is none", (): void => {
+    expect(curateProjects([visible("a")], base, NOW)[0]?.enrichment).toBeNull();
   });
 });
