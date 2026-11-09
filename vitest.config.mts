@@ -4,6 +4,7 @@ import { defineConfig } from "vitest/config";
 const domTests: string[] = [
   "test/components/**/*.test.{ts,tsx}",
   "test/hooks/**/*.test.{ts,tsx}",
+  "test/features/**/components/**/*.test.{ts,tsx}",
 ];
 
 export default defineConfig({

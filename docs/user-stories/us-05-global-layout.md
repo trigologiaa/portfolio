@@ -26,7 +26,7 @@ and on inner pages (go back to the home section).
 
 Included:
 
-- Header with links to the home sections: Projects, About, Stack, Experience,
+- Header with links to the home sections: About, Projects, Stack, Experience,
   Contact; plus CV link slot and the language/theme controls. The theme control
   is the flavor dropdown from [US-03](./us-03-design-tokens-and-theme.md); on
   small screens it shows only its icon, so it fits next to the menu button.

@@ -58,5 +58,20 @@
     "course": "Cursos",
     "work": "Trabajo",
     "present": "Actualidad"
+  },
+  "Projects": {
+    "title": "Proyectos",
+    "allTitle": "Todos los proyectos",
+    "viewAll": "Ver todos los proyectos",
+    "featured": "Destacado",
+    "technologies": "Tecnologías",
+    "repository": "Código",
+    "demo": "Demo online",
+    "repositoryOf": "Código fuente de {name}",
+    "demoOf": "Demo online de {name}",
+    "updated": "Actualizado {date}",
+    "fallbackSummary": "Proyecto en {language}",
+    "fallbackSummaryNoLanguage": "Proyecto de código abierto",
+    "backHome": "Volver al inicio"
   }
 }

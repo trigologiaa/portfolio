@@ -5,7 +5,18 @@ import { AboutSection } from "@/components/sections/about-section";
 import { Hero } from "@/components/sections/hero";
 import { StackSection } from "@/components/sections/stack-section";
 import { TimelineSection } from "@/components/sections/timeline-section";
-import { getAbout, getProfile, getStack, getTimeline } from "@/lib/content";
+import { ProjectsSection } from "@/features/projects/components/projects-section";
+import type { Project } from "@/features/projects/curation/curate";
+import { getProjects } from "@/features/projects/get-projects";
+import {
+  getAbout,
+  getProfile,
+  getStack,
+  getTimeline,
+  type Profile,
+  type Stack,
+  type Timeline,
+} from "@/lib/content";
 
 function Placeholder({
   id,
@@ -28,17 +39,20 @@ export default async function Home({
 }): Promise<React.JSX.Element> {
   const { locale } = await params;
   const nav = await getTranslations({ locale, namespace: "Nav" });
-  const profile = getProfile(locale);
-  const aboutSource = getAbout(locale);
-  const stackSource = getStack(locale);
-  const timeline = getTimeline(locale);
+  const profile: Profile = getProfile(locale);
+  const aboutSource: string = getAbout(locale);
+  const stackSource: Stack = getStack(locale);
+  const timeline: Timeline = getTimeline(locale);
+  const projects: Project[] = await getProjects(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
       <Hero profile={profile} />
-      <Placeholder id="projects" title={nav("projects")} />
       <AboutSection highlights={profile.highlights}>
         <Mdx source={aboutSource} />
       </AboutSection>
+      <ProjectsSection
+        projects={projects.filter((project: Project) => project.featured)}
+      />
       <StackSection stack={stackSource} />
       <TimelineSection entries={timeline.entries} />
       <Placeholder id="contact" title={nav("contact")} />
