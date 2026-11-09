@@ -58,5 +58,20 @@
     "course": "Courses",
     "work": "Work",
     "present": "Present"
+  },
+  "Projects": {
+    "title": "Projects",
+    "allTitle": "All projects",
+    "viewAll": "View all projects",
+    "featured": "Featured",
+    "technologies": "Technologies",
+    "repository": "Code",
+    "demo": "Live demo",
+    "repositoryOf": "Source code of {name}",
+    "demoOf": "Live demo of {name}",
+    "updated": "Updated {date}",
+    "fallbackSummary": "{language} project",
+    "fallbackSummaryNoLanguage": "Open source project",
+    "backHome": "Back to home"
   }
 }
