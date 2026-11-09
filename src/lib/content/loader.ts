@@ -3,18 +3,20 @@ import path from "node:path";
 import type z from "zod";
 import { routing } from "@/i18n/routing";
 import {
+  type Curation,
+  curationSchema,
   type Profile,
   profileSchema,
   type Stack,
   stackSchema,
   type Timeline,
   timelineSchema,
-  type Curation,
-  curationSchema,
 } from "./schemas";
 
 export type ContentErrorCode =
-  "unsupported_locale" | "missing_file" | "invalid_content";
+  | "unsupported_locale"
+  | "missing_file"
+  | "invalid_content";
 
 export class ContentError extends Error {
   public readonly code: ContentErrorCode;
