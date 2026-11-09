@@ -9,12 +9,12 @@ import {
   stackSchema,
   type Timeline,
   timelineSchema,
+  type Curation,
+  curationSchema,
 } from "./schemas";
 
 export type ContentErrorCode =
-  | "unsupported_locale"
-  | "missing_file"
-  | "invalid_content";
+  "unsupported_locale" | "missing_file" | "invalid_content";
 
 export class ContentError extends Error {
   public readonly code: ContentErrorCode;
@@ -56,30 +56,41 @@ function readText(root: string, locale: string, fileName: string): ContentText {
   }
 }
 
-function readJson<S extends z.ZodType>(
-  root: string,
-  locale: string,
-  fileName: string,
+export function describeIssues(error: z.ZodError): string {
+  return error.issues
+    .map((issue) => `${issue.path.join(".") || "(root)"} - ${issue.message}`)
+    .join("; ");
+}
+
+function parseJsonWithSchema<S extends z.ZodType>(
+  label: string,
+  text: string,
   schema: S,
 ): z.output<S> {
-  const { text, label }: ContentText = readText(root, locale, fileName);
   let data: unknown;
   try {
     data = JSON.parse(text);
   } catch {
     throw new ContentError("invalid_content", `${label}: invalid JSON`);
   }
-  const result: z.ZodSafeParseResult<z.output<S>> = schema.safeParse(data);
+  const result: z.ZodSafeParseResult<z.core.output<S>> = schema.safeParse(data);
   if (!result.success) {
-    const issues: string = result.error.issues
-      .map(
-        (issue: z.core.$ZodIssue): string =>
-          `${issue.path.join(".") || "(root)"} — ${issue.message}`,
-      )
-      .join("; ");
-    throw new ContentError("invalid_content", `${label}: ${issues}`);
+    throw new ContentError(
+      "invalid_content",
+      `${label}: ${describeIssues(result.error)}`,
+    );
   }
   return result.data;
+}
+
+function readJson<S extends z.ZodType>(
+  root: string,
+  locale: string,
+  fileName: string,
+  schema: S,
+): z.output<S> {
+  const { text, label } = readText(root, locale, fileName);
+  return parseJsonWithSchema(label, text, schema);
 }
 
 export function loadAbout(root: string, locale: string): string {
@@ -100,4 +111,14 @@ export function loadStack(root: string, locale: string): Stack {
 
 export function loadTimeline(root: string, locale: string): Timeline {
   return readJson(root, locale, "timeline.json", timelineSchema);
+}
+
+export function loadCuration(root: string): Curation {
+  let text: string;
+  try {
+    text = readFileSync(path.join(root, "curation.json"), "utf8");
+  } catch {
+    return curationSchema.parse({});
+  }
+  return parseJsonWithSchema("content/curation.json", text, curationSchema);
 }
