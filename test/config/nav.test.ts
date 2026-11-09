@@ -6,8 +6,8 @@ import es from "../../messages/es.json";
 describe("navItems", (): void => {
   it("lists the home section in page order", (): void => {
     expect(navItems.map((item) => item.id)).toEqual([
-      "projects",
       "about",
+      "projects",
       "stack",
       "experience",
       "contact",
