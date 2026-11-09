@@ -1,4 +1,4 @@
-import z, { type ZodObject, type ZodString, type ZodType } from "zod";
+import z, { type ZodString, type ZodType } from "zod";
 import { type IconKey, iconKeys } from "./icon-keys";
 
 const ISO_DATE_REGEX: RegExp =
@@ -69,20 +69,37 @@ export interface Timeline {
   entries: TimelineEntry[];
 }
 
-export const curationSchema: ZodObject = z.object({
+export interface Curation {
+  exclude: string[];
+  pin: string[];
+  featuredCount: number;
+  selfRepo: string;
+}
+
+export interface ProjectEnrichmentFrontmatter {
+  title?: string | undefined;
+  summary?: string | undefined;
+  demo?: string | undefined;
+  tags: string[];
+  screenshots: Image[];
+}
+
+export const curationSchema: ZodType<Curation> = z.object({
   exclude: z.array(z.string().min(1)).default([]),
   pin: z.array(z.string().min(1)).default([]),
   featuredCount: z.number().min(1).default(DEFAULT_FEATURED_COUNT),
   selfRepo: z.string().min(1).default("portfolio"),
 });
 
-export const enrichmentSchema: ZodObject = z.object({
-  title: z.string().min(1).optional(),
-  summary: z.string().min(1).optional(),
-  demo: z.url().optional(),
-  tags: z.array(z.string().min(1)).default([]),
-  screenshots: z.array(image).default([]),
-});
+export const enrichmentSchema: ZodType<ProjectEnrichmentFrontmatter> = z.object(
+  {
+    title: z.string().min(1).optional(),
+    summary: z.string().min(1).optional(),
+    demo: z.url().optional(),
+    tags: z.array(z.string().min(1)).default([]),
+    screenshots: z.array(image).default([]),
+  },
+);
 
 export const profileSchema: ZodType<Profile> = z.object({
   name: z.string().min(1),
@@ -133,6 +150,3 @@ export const timelineEntrySchema: ZodType<TimelineEntry> = z.object({
 export const timelineSchema: ZodType<Timeline> = z.object({
   entries: z.array(timelineEntrySchema),
 });
-
-export type ProjectEnrichmentFrontmatter = z.output<typeof enrichmentSchema>;
-export type Curation = z.output<typeof curationSchema>;
