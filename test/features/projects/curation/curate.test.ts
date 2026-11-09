@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   curateProjects,
+  findUnknownNames,
   type Project,
 } from "@/features/projects/curation/curate";
 import type { Repository } from "@/features/projects/types";
@@ -234,5 +235,21 @@ describe("curateProjects: featured and enrichment", (): void => {
 
   it("leaves the enrichment empty when there is none", (): void => {
     expect(curateProjects([visible("a")], base, NOW)[0]?.enrichment).toBeNull();
+  });
+});
+
+describe("findUnknownNames", (): void => {
+  it("lists the names in pin and exclude that match no repository", (): void => {
+    const unknown = findUnknownNames(
+      { ...base, pin: ["real", "tpyo"], exclude: ["Old", "ghost"] },
+      [visible("real"), visible("old")],
+    );
+    expect(unknown).toEqual(["tpyo", "ghost"]);
+  });
+
+  it("returns an empty list when every name exists", (): void => {
+    expect(findUnknownNames({ ...base, pin: ["a"] }, [visible("a")])).toEqual(
+      [],
+    );
   });
 });

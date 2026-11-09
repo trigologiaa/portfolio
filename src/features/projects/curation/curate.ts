@@ -83,3 +83,15 @@ export function curateProjects(
     enrichment: enrichments[item.repository.name] ?? null,
   }));
 }
+
+export function findUnknownNames(
+  curation: Curation,
+  repos: readonly Repository[],
+): string[] {
+  const known: Set<string> = new Set(
+    repos.map((repo: Repository) => repo.name.toLowerCase()),
+  );
+  return [...curation.pin, ...curation.exclude].filter(
+    (name: string) => !known.has(name.toLowerCase()),
+  );
+}
