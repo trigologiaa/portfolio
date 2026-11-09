@@ -37,8 +37,13 @@ export function curateProjects(
   now: Date,
   enrichments: Record<string, ProjectEnrichment> = {},
 ): Project[] {
+  const excluded: Set<string> = new Set(
+    curation.exclude.map((name: string) => name.toLowerCase()),
+  );
   const candidates: Repository[] = repos.filter(
-    (repo: Repository): boolean => !isHiddenByDefault(repo, curation),
+    (repo: Repository) =>
+      !excluded.has(repo.name.toLowerCase()) &&
+      !isHiddenByDefault(repo, curation),
   );
   return rankRepositories(candidates, now).map(
     (item: ScoredRepository, index: number): Project => ({

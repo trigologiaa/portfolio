@@ -82,3 +82,37 @@ describe("curateProjects: hidden by default", (): void => {
     expect(curateProjects([], base, NOW)).toEqual([]);
   });
 });
+
+describe("curateProjects: exclusion list", (): void => {
+  it("never shows an excluded repository, even when it has the highest score", (): void => {
+    const star: Repository = visible("old-experiment", {
+      homepage: "https://x.dev",
+      topics: ["a", "b", "c"],
+      pushedAt: NOW.toISOString(),
+    });
+    const result: Project[] = curateProjects(
+      [star, visible("plain")],
+      { ...base, exclude: ["old-experiment"] },
+      NOW,
+    );
+    expect(names(result)).toEqual(["plain"]);
+  });
+
+  it("matches names without regard to upper or lower case", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("Secret-App")],
+      { ...base, exclude: ["secret-app"] },
+      NOW,
+    );
+    expect(result).toEqual([]);
+  });
+
+  it("wins over pin when a name is in both lists", (): void => {
+    const result: Project[] = curateProjects(
+      [visible("both"), visible("other")],
+      { ...base, exclude: ["both"], pin: ["both"] },
+      NOW,
+    );
+    expect(names(result)).toEqual(["other"]);
+  });
+});
