@@ -9,7 +9,7 @@ export interface TechOption {
 const key = (name: string): string => name.toLowerCase();
 
 export function getTechOptions(projects: readonly Project[]): TechOption[] {
-  const options = new Map<string, TechOption>();
+  const options: Map<string, TechOption> = new Map<string, TechOption>();
   for (const project of projects) {
     for (const name of getProjectTech(project)) {
       const existing = options.get(key(name));
@@ -22,5 +22,18 @@ export function getTechOptions(projects: readonly Project[]): TechOption[] {
   }
   return [...options.values()].sort(
     (a, b) => b.count - a.count || a.name.localeCompare(b.name),
+  );
+}
+
+export function filterProjects(
+  projects: readonly Project[],
+  selected: readonly string[],
+): Project[] {
+  if (selected.length === 0) {
+    return [...projects];
+  }
+  const wanted: Set<string> = new Set(selected.map(key));
+  return projects.filter((project: Project) =>
+    getProjectTech(project).some((name: string) => wanted.has(key(name))),
   );
 }

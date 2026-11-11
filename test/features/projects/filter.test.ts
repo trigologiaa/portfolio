@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import type { Project } from "@/features/projects/curation/curate";
-import { makeProject } from "../../helpers/repo-factory";
 import type { TechOption } from "@/features/projects/filter";
-import { getTechOptions } from "@/features/projects/filter";
+import { filterProjects, getTechOptions } from "@/features/projects/filter";
+import { makeProject } from "../../helpers/repo-factory";
 
 function project(
   name: string,
@@ -57,5 +57,47 @@ describe("getTechOptions", (): void => {
 
   it("returns an empty list when there are no projects", (): void => {
     expect(getTechOptions([])).toEqual([]);
+  });
+});
+
+describe("filterProjects", (): void => {
+  const ts = project("ts-app", ["Typescript"]);
+  const py = project("py-app", ["Python"]);
+  const both = project("both", ["TypeScript", "Python"]);
+  const all = [ts, py, both];
+  const names = (projects: typeof all): string[] => projects.map((p) => p.slug);
+
+  it("returns every project when nothing is selected", (): void => {
+    expect(filterProjects(all, [])).toEqual(all);
+  });
+
+  it("keeps the projects that use the selected technology", (): void => {
+    expect(names(filterProjects(all, ["TypeScript"]))).toEqual([
+      "ts-app",
+      "both",
+    ]);
+  });
+
+  it("combines several technologies with OR", (): void => {
+    expect(names(filterProjects(all, ["TypeScript", "Python"]))).toEqual([
+      "ts-app",
+      "py-app",
+      "both",
+    ]);
+  });
+
+  it("ignores upper and lower case", (): void => {
+    expect(names(filterProjects(all, ["python"]))).toEqual(["py-app", "both"]);
+  });
+
+  it("returns an empty list when nothing matches", (): void => {
+    expect(filterProjects(all, ["Rust"])).toEqual([]);
+  });
+
+  it("keeps the original order", (): void => {
+    expect(names(filterProjects([both, ts], ["TypeScript"]))).toEqual([
+      "both",
+      "ts-app",
+    ]);
   });
 });
