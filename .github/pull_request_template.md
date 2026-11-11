@@ -28,7 +28,7 @@
 ## Definition of Done
 
 - [ ] Every item in the story's DoD is met
-- [ ] Commits follow `type(us-NN): message`
+- [ ] Commits follow `type(scope): message`
 - [ ] No secrets in the repo; new variables added to `.env.example`
 - [ ] README updated (if scripts, workflow or URLs change)
 

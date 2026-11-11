@@ -1,19 +1,8 @@
 // biome-ignore-all lint: Playwright config file
-const usScope = {
-  rules: {
-    "us-scope": ({ scope }) => [
-      /^us-\d{2}$/.test(scope ?? ""),
-      "scope must be the story number, e.g. us-01",
-    ],
-  },
-};
-
 export default {
   extends: ["@commitlint/config-conventional"],
-  plugins: [usScope],
   rules: {
-    "us-scope": [2, "always"],
-    "scope-empty": [2, "never"],
+    "scope-case": [2, "always", "kebab-case"],
     "type-enum": [
       2,
       "always",
