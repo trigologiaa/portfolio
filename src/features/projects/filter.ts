@@ -8,6 +8,19 @@ export interface TechOption {
 
 const key = (name: string): string => name.toLowerCase();
 
+export function filterProjects(
+  projects: readonly Project[],
+  selected: readonly string[],
+): Project[] {
+  if (selected.length === 0) {
+    return [...projects];
+  }
+  const wanted: Set<string> = new Set(selected.map(key));
+  return projects.filter((project: Project) =>
+    getProjectTech(project).some((name: string) => wanted.has(key(name))),
+  );
+}
+
 export function getTechOptions(projects: readonly Project[]): TechOption[] {
   const options: Map<string, TechOption> = new Map<string, TechOption>();
   for (const project of projects) {
@@ -25,15 +38,35 @@ export function getTechOptions(projects: readonly Project[]): TechOption[] {
   );
 }
 
-export function filterProjects(
-  projects: readonly Project[],
-  selected: readonly string[],
-): Project[] {
-  if (selected.length === 0) {
-    return [...projects];
+export function parseTechParam(
+  param: string | null,
+  options: readonly TechOption[],
+): string[] {
+  if (!param) {
+    return [];
   }
-  const wanted: Set<string> = new Set(selected.map(key));
-  return projects.filter((project: Project) =>
-    getProjectTech(project).some((name: string) => wanted.has(key(name))),
+  const byKey: Map<string, string> = new Map(
+    options.map((option: TechOption) => [key(option.name), option.name]),
   );
+  const result: string[] = [];
+  for (const raw of param.split(",")) {
+    const name: string | undefined = byKey.get(key(raw.trim()));
+    if (name && !result.includes(name)) {
+      result.push(name);
+    }
+  }
+  return result;
+}
+
+export function serializeTechParam(selected: readonly string[]): string {
+  return selected.map(key).join(",");
+}
+
+export function toggleTech(
+  selected: readonly string[],
+  name: string,
+): string[] {
+  return selected.some((item) => key(item) === key(name))
+    ? selected.filter((item) => key(item) !== key(name))
+    : [...selected, name];
 }

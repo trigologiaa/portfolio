@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import type { Project } from "@/features/projects/curation/curate";
 import type { TechOption } from "@/features/projects/filter";
-import { filterProjects, getTechOptions } from "@/features/projects/filter";
+import {
+  filterProjects,
+  getTechOptions,
+  parseTechParam,
+  serializeTechParam,
+  toggleTech,
+} from "@/features/projects/filter";
 import { makeProject } from "../../helpers/repo-factory";
 
 function project(
@@ -98,6 +104,54 @@ describe("filterProjects", (): void => {
     expect(names(filterProjects([both, ts], ["TypeScript"]))).toEqual([
       "both",
       "ts-app",
+    ]);
+  });
+});
+
+describe("parseTechParam", (): void => {
+  const options = [
+    { name: "TypeScript", count: 3 },
+    { name: "Python", count: 2 },
+  ];
+
+  it("reads a comma-separated list and returns the names as they are shown", (): void => {
+    expect(parseTechParam("typescript,python", options)).toEqual([
+      "TypeScript",
+      "Python",
+    ]);
+  });
+
+  it("ignores unknown values, blanks and repeated names", (): void => {
+    expect(parseTechParam("does-not-exist, ,python,PYTHON", options)).toEqual([
+      "Python",
+    ]);
+  });
+
+  it("returns an empty list for a missing parameter", (): void => {
+    expect(parseTechParam(null, options)).toEqual([]);
+    expect(parseTechParam("", options)).toEqual([]);
+  });
+});
+
+describe("serializeTechParam", (): void => {
+  it("writes the names in lower case, separated by commas", (): void => {
+    expect(serializeTechParam(["TypeScript", "Python"])).toBe(
+      "typescript,python",
+    );
+  });
+});
+
+describe("toggleTech", (): void => {
+  it("adds a technology that is not selected", (): void => {
+    expect(toggleTech(["Python"], "TypeScript")).toEqual([
+      "Python",
+      "TypeScript",
+    ]);
+  });
+
+  it("removes a technology that is already selected", (): void => {
+    expect(toggleTech(["Python", "TypeScript"], "python")).toEqual([
+      "TypeScript",
     ]);
   });
 });
