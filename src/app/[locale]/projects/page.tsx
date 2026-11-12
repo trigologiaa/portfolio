@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
 import type { JSX } from "react/jsx-runtime";
 import { ProjectGrid } from "@/features/projects/components/project-grid";
+import { ProjectsExplorer } from "@/features/projects/components/projects-explorer";
 import type { Project } from "@/features/projects/curation/curate";
 import { getProjects } from "@/features/projects/get-projects";
 import { Link } from "@/i18n/navigation";
@@ -25,7 +27,11 @@ export default async function ProjectsPage({
         {t("allTitle")}
       </h1>
       <div className="mt-8">
-        <ProjectGrid projects={projects} label={t("allTitle")} />
+        <Suspense
+          fallback={<ProjectGrid projects={projects} label={t("allTitle")} />}
+        >
+          <ProjectsExplorer projects={projects} />
+        </Suspense>
       </div>
     </main>
   );
