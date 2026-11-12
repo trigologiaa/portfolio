@@ -9,9 +9,9 @@ Personal portfolio (Next.js + TypeScript). Production:
 - `main` is protected: changes only get in through a PR with the `ci` check
   green.
 - PRs are merged with a **merge commit** (no squash).
-- Conventional commits with the story number as scope: `type(us-NN): message`
-  (for example `feat(us-01): add the minimal home page`). A Husky hook enforces
-  it.
+- Conventional commits: `type(scope): message`, where the scope is optional and
+  kebab-case (for example `feat(us-01): add the minimal home page` or
+  `ci(deploy): add the promote workflow`). A Husky hook enforces it.
 
 ## Scripts
 
@@ -29,7 +29,8 @@ Personal portfolio (Next.js + TypeScript). Production:
 
 ## Git hooks (Husky)
 
-- `commit-msg`: rejects any message that isn't `type(us-NN): message`.
+- `commit-msg`: rejects any message that isn't `type(scope): message`
+  (conventional commits, optional kebab-case scope).
 - `pre-push`: runs lint, type check and build before pushing.
 
 ## Internationalization

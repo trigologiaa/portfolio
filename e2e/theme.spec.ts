@@ -1,7 +1,7 @@
 import test, { type ConsoleMessage, expect } from "@playwright/test";
 
 const selector: { name: RegExp } = {
-  name: /^Theme/,
+  name: /^Theme: /,
 };
 
 const FLAVOR_LABELS: readonly string[] = [

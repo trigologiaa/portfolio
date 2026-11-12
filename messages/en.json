@@ -72,6 +72,10 @@
     "updated": "Updated {date}",
     "fallbackSummary": "{language} project",
     "fallbackSummaryNoLanguage": "Open source project",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "filterLabel": "Filter by technology",
+    "count": "{count, plural, one {# project} other {# projects}}",
+    "noMatches": "No projects match these filters",
+    "clearFilters": "Clear filters"
   }
 }

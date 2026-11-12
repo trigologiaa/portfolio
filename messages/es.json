@@ -72,6 +72,10 @@
     "updated": "Actualizado {date}",
     "fallbackSummary": "Proyecto en {language}",
     "fallbackSummaryNoLanguage": "Proyecto de código abierto",
-    "backHome": "Volver al inicio"
+    "backHome": "Volver al inicio",
+    "filterLabel": "Filtrar por tecnología",
+    "count": "{count, plural, one {# proyecto} other {# proyectos}}",
+    "noMatches": "Ningún proyecto coincide con estos filtros",
+    "clearFilters": "Limpiar filtros"
   }
 }
