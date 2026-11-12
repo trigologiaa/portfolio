@@ -80,4 +80,53 @@ describe("ProjectsExplorer", (): void => {
     await user.click(screen.getByRole("button", { name: "Python" }));
     expect(screen.getAllByRole("article")).toHaveLength(TS_AND_PY_PROJECTS);
   });
+
+  it("restores the filter from the url on load", (): void => {
+    search = "tech=python";
+    renderWithProviders(<ProjectsExplorer projects={projects} />);
+    expect(screen.getAllByRole("article")).toHaveLength(1);
+    expect(screen.getByRole("button", { name: "Python" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
+  it("ignores an unknown value in the url and shows every project", (): void => {
+    search = "tech=does-not-exist";
+    renderWithProviders(<ProjectsExplorer projects={projects} />);
+    expect(screen.getAllByRole("article")).toHaveLength(ALL_PROJECTS);
+    expect(
+      screen.queryByRole("button", { name: "Clear filters" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("clears the filters and the url parameter", async (): Promise<void> => {
+    search = "tech=python";
+    const user: UserEvent = userEvent.setup();
+    renderWithProviders(<ProjectsExplorer projects={projects} />);
+    await user.click(screen.getByRole("button", { name: "Clear filters" }));
+    expect(screen.getAllByRole("article")).toHaveLength(ALL_PROJECTS);
+    expect(replaceState).toHaveBeenLastCalledWith(
+      null,
+      "",
+      expect.not.stringContaining("tech="),
+    );
+  });
+
+  it("uses the singular form for a single project", async (): Promise<void> => {
+    const user: UserEvent = userEvent.setup();
+    renderWithProviders(<ProjectsExplorer projects={projects} />);
+    await user.click(screen.getByRole("button", { name: "Go" }));
+    expect(screen.getByRole("status")).toHaveTextContent("1 project");
+  });
+
+  it("translates the controls", (): void => {
+    renderWithProviders(<ProjectsExplorer projects={projects} />, {
+      locale: "es",
+    });
+    expect(
+      screen.getByRole("group", { name: "Filtrar por tecnología" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("4 proyectos");
+  });
 });
