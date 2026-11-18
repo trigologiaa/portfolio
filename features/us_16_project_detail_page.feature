@@ -1,4 +1,4 @@
-@US-15
+@US-16
 Feature: Project Detail page
   As a technical recruiter
   I want more detail about a project
