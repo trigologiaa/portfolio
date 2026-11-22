@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import type { JSX, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import type { Image as ContentImage } from "@/lib/content/schemas";
 import type { Project } from "../curation/curate";
 import {
   formatUpdated,
@@ -30,6 +32,8 @@ export function ProjectDetail({
   const tech: string[] = getProjectTech(project);
   const demo: string | null = getDemoUrl(project);
   const updated: string = formatUpdated(project.repository.pushedAt, locale);
+  const screenshots: ContentImage[] = project.enrichment?.screenshots ?? [];
+  const { stars, forks } = project.repository;
   return (
     <article className="mx-auto max-w-3xl px-4 py-16">
       <Link
@@ -68,17 +72,17 @@ export function ProjectDetail({
           </Button>
         )}
       </div>
-      {updated && (
-        <p className="mt-4 text-sm text-muted-foreground">
-          {t("updated", { date: updated })}
-        </p>
-      )}
+      <p className="mt-4 flex flex-wrap gap-x-4 text-sm text-muted-foreground">
+        {updated && <span>{t("updated", { date: updated })}</span>}
+        {stars > 0 && <span>{t("stars", { count: stars })}</span>}
+        {forks > 0 && <span>{t("forks", { count: forks })}</span>}
+      </p>
       {tech.length > 0 && (
         <ul
           aria-label={t("technologies")}
           className="mt-6 flex flex-wrap gap-2"
         >
-          {tech.map((name) => (
+          {tech.map((name: string) => (
             <li
               key={name}
               className="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground"
@@ -87,6 +91,27 @@ export function ProjectDetail({
             </li>
           ))}
         </ul>
+      )}
+      {screenshots.length > 0 && (
+        <section aria-labelledby="screenshots-title" className="mt-10">
+          <h2 id="screenshots-title" className="text-xl font-semibold">
+            {t("screenshots")}
+          </h2>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+            {screenshots.map((shot: ContentImage) => (
+              <li key={shot.src}>
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  width={800}
+                  height={450}
+                  sizes="(min-width: 768px) 384px, 100vw"
+                  className="aspect-video w-full rounded-lg border border-border object-cover"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
       {children && <div className="mt-10">{children}</div>}
     </article>
