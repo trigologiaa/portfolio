@@ -5,6 +5,9 @@ type WithNextIntl = ReturnType<typeof createNextIntlPlugin>;
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  experimental: {
+    agentUpgrade: "security",
+  },
   partialPrefetching: true,
   reactCompiler: true,
   turbopack: {

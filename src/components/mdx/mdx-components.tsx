@@ -16,4 +16,10 @@ export const mdxComponents: MDXComponents = {
   strong: (props: ComponentProps<"strong">): ReactElement => (
     <strong className="font-semibold" {...props} />
   ),
+  h2: (props: ComponentProps<"h2">): ReactElement => (
+    <h2 className="mb-3 mt-8 text-xl font-semibold first:mt-0" {...props} />
+  ),
+  h3: (props: ComponentProps<"h3">): ReactElement => (
+    <h3 className="mb-2 mt-6 text-lg font-semibold" {...props} />
+  ),
 };

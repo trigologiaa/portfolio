@@ -76,6 +76,12 @@
     "filterLabel": "Filtrar por tecnología",
     "count": "{count, plural, one {# proyecto} other {# proyectos}}",
     "noMatches": "Ningún proyecto coincide con estos filtros",
-    "clearFilters": "Limpiar filtros"
+    "clearFilters": "Limpiar filtros",
+    "screenshots": "Capturas",
+    "moreProjects": "Más proyectos",
+    "previous": "Proyecto anterior",
+    "next": "Proyecto siguiente",
+    "stars": "{count, plural, one {# estrella} other {# estrellas}}",
+    "forks": "{count, plural, one {# fork} other {# forks}}"
   }
 }
