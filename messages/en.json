@@ -76,6 +76,12 @@
     "filterLabel": "Filter by technology",
     "count": "{count, plural, one {# project} other {# projects}}",
     "noMatches": "No projects match these filters",
-    "clearFilters": "Clear filters"
+    "clearFilters": "Clear filters",
+    "screenshots": "Screenshots",
+    "moreProjects": "More projects",
+    "previous": "Previous project",
+    "next": "Next project",
+    "stars": "{count, plural, one {# star} other {# stars}}",
+    "forks": "{count, plural, one {# fork} other {# forks}}"
   }
 }
