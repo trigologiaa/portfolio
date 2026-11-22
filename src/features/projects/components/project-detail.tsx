@@ -22,6 +22,8 @@ interface ProjectDetailProps {
 
 export function ProjectDetail({
   project,
+  previous,
+  next,
   children,
 }: ProjectDetailProps): JSX.Element {
   const t: ReturnType<typeof useTranslations<"Projects">> =
@@ -114,6 +116,41 @@ export function ProjectDetail({
         </section>
       )}
       {children && <div className="mt-10">{children}</div>}
+      {(previous || next) && (
+        <nav
+          aria-label={t("moreProjects")}
+          className="mt-12 flex flex-col justify-between gap-4 border-t border-border pt-6 sm:flex-row"
+        >
+          {previous ? (
+            <Link
+              href={`/projects/${previous.slug}`}
+              className="group flex flex-col"
+            >
+              <span className="text-sm text-muted-foreground">
+                ← {t("previous")}
+              </span>
+              <span className="font-medium group-hover:underline">
+                {getProjectTitle(previous)}
+              </span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <Link
+              href={`/projects/${next.slug}`}
+              className="group flex flex-col sm:items-end"
+            >
+              <span className="text-sm text-muted-foreground">
+                {t("next")} →
+              </span>
+              <span className="font-medium group-hover:underline">
+                {getProjectTitle(next)}
+              </span>
+            </Link>
+          )}
+        </nav>
+      )}
     </article>
   );
 }

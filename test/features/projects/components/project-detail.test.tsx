@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ProjectDetail } from "@/features/projects/components/project-detail";
+import type { Project } from "@/features/projects/curation/curate";
 import { makeProject } from "../../../helpers/repo-factory";
 import { renderWithProviders } from "../../../render-with-providers";
 
@@ -138,5 +139,53 @@ describe("ProjectDetail with extra content", (): void => {
     );
     expect(screen.queryByText(/star/)).not.toBeInTheDocument();
     expect(screen.queryByText(/fork/)).not.toBeInTheDocument();
+  });
+});
+
+describe("ProjectDetail neighbours", (): void => {
+  const before: Project = makeProject({ repo: { name: "before-app" } });
+  const after = makeProject({ repo: { name: "after-app" } });
+
+  it("links to the previous and the next project", (): void => {
+    renderWithProviders(
+      <ProjectDetail project={makeProject()} previous={before} next={after} />,
+    );
+    const nav: HTMLElement = screen.getByRole("navigation", {
+      name: "More projects",
+    });
+    expect(nav).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Previous project.*before-app/ }),
+    ).toHaveAttribute("href", "/projects/before-app");
+    expect(
+      screen.getByRole("link", { name: /Next project.*after-app/ }),
+    ).toHaveAttribute("href", "/projects/after-app");
+  });
+
+  it("shows only the link that exists", (): void => {
+    renderWithProviders(
+      <ProjectDetail project={makeProject()} previous={null} next={after} />,
+    );
+    expect(
+      screen.queryByRole("link", { name: /Previous project/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Next project/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("translates the navigation", (): void => {
+    renderWithProviders(
+      <ProjectDetail project={makeProject()} previous={before} next={after} />,
+      {
+        locale: "es",
+      },
+    );
+    expect(
+      screen.getByRole("navigation", { name: "Más proyectos" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Proyecto anterior/ }),
+    ).toBeInTheDocument();
   });
 });
