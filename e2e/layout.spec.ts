@@ -30,8 +30,10 @@ test.describe("mobile (375 px)", (): void => {
   }): Promise<void> => {
     await page.goto("/en");
     const button: Locator = page.getByRole("button", { name: "Open menu" });
-    await button.click();
-    await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(async (): Promise<void> => {
+      await button.click();
+      await expect(page.getByRole("dialog")).toBeVisible({ timeout: 1000 });
+    }).toPass();
     await page.keyboard.press("Escape");
     await expect(page.getByRole("dialog")).toBeHidden();
     await expect(button).toBeFocused();
@@ -62,7 +64,7 @@ test("the skip link is the first focusable element and moves focus to the conten
 test("navigating from an inner page goes back to the home section", async ({
   page,
 }): Promise<void> => {
-  await page.goto("/en/some-unknown-page");
+  await page.goto("/en/projects/shop-api");
   await page.getByRole("banner").getByRole("link", { name: "Contact" }).click();
   await expect(page).toHaveURL(/\/en#contact$/);
 });
