@@ -1,27 +1,11 @@
-import { z } from "zod";
+import { repositoriesSchema } from "../schema";
 import type { RepositoriesResult, Repository } from "../types";
 import { fetchRepositories } from "./client";
 import { type GithubConfigResult, readGithubConfig } from "./config";
 
-const repositorySchema: z.ZodType<Repository> = z.object({
-  name: z.string().min(1),
-  description: z.string().nullable(),
-  url: z.url(),
-  homepage: z.string().nullable(),
-  topics: z.array(z.string()),
-  language: z.string().nullable(),
-  languages: z.record(z.string(), z.number()),
-  stars: z.number().int().nonnegative(),
-  forks: z.number().int().nonnegative(),
-  pushedAt: z.string().min(1),
-  isFork: z.boolean(),
-  isArchived: z.boolean(),
-  hasReadme: z.boolean(),
-});
-
 async function loadFixture(): Promise<Repository[]> {
-  const fixture: unknown = (await import("./fixtures/repos.json")).default;
-  return z.array(repositorySchema).parse(fixture);
+  const fixture = (await import("./fixtures/repos.json")).default;
+  return repositoriesSchema.parse(fixture);
 }
 
 export async function getRepositories(
