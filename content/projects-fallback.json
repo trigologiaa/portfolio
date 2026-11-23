@@ -1,1 +1,238 @@
-[]
+[
+  {
+    "name": "frontend",
+    "description": null,
+    "url": "https://github.com/trigologiaa/frontend",
+    "homepage": "https://frontend-trigologiaa.vercel.app",
+    "topics": [],
+    "language": "JavaScript",
+    "languages": {
+      "JavaScript": 261315,
+      "CSS": 22813,
+      "Gherkin": 2778,
+      "HTML": 1021
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-11-08T02:20:43Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "hardware-store-api",
+    "description": "Junior Backend technical test resolution: A hardware store inventory management REST API developed with Java, Spring Boot, and Thymeleaf.",
+    "url": "https://github.com/trigologiaa/hardware-store-api",
+    "homepage": null,
+    "topics": [],
+    "language": "Java",
+    "languages": {
+      "Java": 10332
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-08-04T21:02:04Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "e-commerce-rest-api",
+    "description": "Basic REST API e-commerce project in Spring Boot",
+    "url": "https://github.com/trigologiaa/e-commerce-rest-api",
+    "homepage": null,
+    "topics": [],
+    "language": "Java",
+    "languages": {
+      "Java": 81503
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-07-06T00:37:52Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "adt",
+    "description": "ADT implementations in different programming languages",
+    "url": "https://github.com/trigologiaa/adt",
+    "homepage": null,
+    "topics": [],
+    "language": "Go",
+    "languages": {
+      "Go": 7526
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-06-20T16:39:34Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "inventario-python",
+    "description": "Proyecto básico en Python y SQLite3 para una aplicación de terminal con operaciones CRUD sobre productos.",
+    "url": "https://github.com/trigologiaa/inventario-python",
+    "homepage": null,
+    "topics": [],
+    "language": "Python",
+    "languages": {
+      "Python": 16288
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2025-11-29T00:48:39Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "ascii-art-renderer-in-python",
+    "description": "Converts images into ASCII art by mapping pixel brightness to customizable character scales (1–25). Supports resizing, multiple image formats, and prints directly to the console.",
+    "url": "https://github.com/trigologiaa/ascii-art-renderer-in-python",
+    "homepage": null,
+    "topics": [],
+    "language": "Python",
+    "languages": {
+      "Python": 4414
+    },
+    "stars": 1,
+    "forks": 0,
+    "pushedAt": "2025-07-20T01:37:27Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "pacman-in-javascript",
+    "description": "A browser-based Pacman clone built with HTML5, CSS3, and vanilla JavaScript. Includes smooth grid-based movement, basic ghost AI (wandering and chasing with BFS), score tracking, lives system, and a responsive canvas rendering engine. Play directly in your browser.",
+    "url": "https://github.com/trigologiaa/pacman-in-javascript",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript",
+    "languages": {
+      "JavaScript": 26197,
+      "HTML": 696,
+      "CSS": 85
+    },
+    "stars": 1,
+    "forks": 0,
+    "pushedAt": "2025-07-18T02:36:29Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "trigologiaa",
+    "description": null,
+    "url": "https://github.com/trigologiaa/trigologiaa",
+    "homepage": null,
+    "topics": [],
+    "language": null,
+    "languages": {},
+    "stars": 1,
+    "forks": 0,
+    "pushedAt": "2026-11-23T06:22:05Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "nvim",
+    "description": null,
+    "url": "https://github.com/trigologiaa/nvim",
+    "homepage": null,
+    "topics": [],
+    "language": "Lua",
+    "languages": {
+      "Lua": 105280
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-10-03T00:08:01Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "malla",
+    "description": null,
+    "url": "https://github.com/trigologiaa/malla",
+    "homepage": null,
+    "topics": [],
+    "language": "Makefile",
+    "languages": {
+      "Makefile": 1182,
+      "Java": 1099,
+      "Dockerfile": 520
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-09-07T00:35:11Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "innovalab-api-spring-boot",
+    "description": null,
+    "url": "https://github.com/trigologiaa/innovalab-api-spring-boot",
+    "homepage": null,
+    "topics": [],
+    "language": "Java",
+    "languages": {
+      "Java": 2924,
+      "Dockerfile": 1017,
+      "PowerShell": 692,
+      "Shell": 304
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-05-19T21:39:06Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "innovalab-api-node",
+    "description": null,
+    "url": "https://github.com/trigologiaa/innovalab-api-node",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript",
+    "languages": {
+      "JavaScript": 1952,
+      "TypeScript": 1625,
+      "Dockerfile": 664,
+      "PowerShell": 551,
+      "Shell": 251
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-05-16T19:38:11Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": true
+  },
+  {
+    "name": "dotfiles",
+    "description": "My dotfiles to install Arch Linux with Hyprland",
+    "url": "https://github.com/trigologiaa/dotfiles",
+    "homepage": null,
+    "topics": [],
+    "language": "Lua",
+    "languages": {
+      "Lua": 28309,
+      "CSS": 10714,
+      "Python": 8120,
+      "Shell": 6304
+    },
+    "stars": 0,
+    "forks": 0,
+    "pushedAt": "2026-06-19T20:18:07Z",
+    "isFork": false,
+    "isArchived": false,
+    "hasReadme": false
+  }
+]

@@ -18,7 +18,8 @@
     "test:run": "vitest run",
     "test:e2e": "playwright test",
     "typecheck": "next typegen && tsc --noEmit",
-    "verify": "pnpm lint:fix && pnpm typecheck && pnpm content:check && pnpm test:run && pnpm build"
+    "verify": "pnpm lint:fix && pnpm typecheck && pnpm content:check && pnpm test:run && pnpm build",
+    "snapshot:projects": "tsx scripts/snapshot-projects.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
