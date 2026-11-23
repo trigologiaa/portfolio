@@ -19,7 +19,7 @@ export async function generateStaticParams(): Promise<
 > {
   const params: { locale: string; slug: string }[] = [];
   for (const locale of routing.locales) {
-    for (const project of await getProjects(locale)) {
+    for (const project of (await getProjects(locale)).projects) {
       params.push({ locale, slug: project.slug });
     }
   }
@@ -30,7 +30,7 @@ export default async function ProjectPage({
   params,
 }: PageProps): Promise<JSX.Element> {
   const { locale, slug } = await params;
-  const projects: Project[] = await getProjects(locale);
+  const { projects } = await getProjects(locale);
   const project: Project | null = findProject(projects, slug);
   if (!project) {
     notFound();

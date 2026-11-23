@@ -43,7 +43,7 @@ export default async function Home({
   const aboutSource: string = getAbout(locale);
   const stackSource: Stack = getStack(locale);
   const timeline: Timeline = getTimeline(locale);
-  const projects: Project[] = await getProjects(locale);
+  const { projects } = await getProjects(locale);
   return (
     <main id="content" className="mx-auto max-w-5xl px-4">
       <Hero profile={profile} />
@@ -52,6 +52,7 @@ export default async function Home({
       </AboutSection>
       <ProjectsSection
         projects={projects.filter((project: Project) => project.featured)}
+        githubUrl={profile.links.github}
       />
       <StackSection stack={stackSource} />
       <TimelineSection entries={timeline.entries} />

@@ -11,6 +11,8 @@ vi.mock(
   async () => import("../../../helpers/navigation-mock"),
 );
 
+const GITHUB_URL: string = "https://github.com/someone";
+
 const sampleProjects: Project[] = ["a", "b", "c"].map((name) =>
   makeProject({ repo: { name } }),
 );
@@ -29,7 +31,9 @@ describe("ProjectGrid", (): void => {
 
 describe("ProjectsSection", (): void => {
   it("shows the heading, the cards and a link to the full list", (): void => {
-    renderWithProviders(<ProjectsSection projects={sampleProjects} />);
+    renderWithProviders(
+      <ProjectsSection projects={sampleProjects} githubUrl={GITHUB_URL} />,
+    );
     expect(
       screen.getByRole("heading", { level: 2, name: "Projects" }),
     ).toBeInTheDocument();
@@ -41,15 +45,18 @@ describe("ProjectsSection", (): void => {
 
   it("uses the section id that the navigation points to", (): void => {
     const { container } = renderWithProviders(
-      <ProjectsSection projects={sampleProjects} />,
+      <ProjectsSection projects={sampleProjects} githubUrl={GITHUB_URL} />,
     );
     expect(container.querySelector("section#projects")).not.toBeNull();
   });
 
   it("translates the heading and the link", (): void => {
-    renderWithProviders(<ProjectsSection projects={sampleProjects} />, {
-      locale: "es",
-    });
+    renderWithProviders(
+      <ProjectsSection projects={sampleProjects} githubUrl={GITHUB_URL} />,
+      {
+        locale: "es",
+      },
+    );
     expect(
       screen.getByRole("heading", { level: 2, name: "Proyectos" }),
     ).toBeInTheDocument();
