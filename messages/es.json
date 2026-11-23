@@ -82,6 +82,9 @@
     "previous": "Proyecto anterior",
     "next": "Proyecto siguiente",
     "stars": "{count, plural, one {# estrella} other {# estrellas}}",
-    "forks": "{count, plural, one {# fork} other {# forks}}"
+    "forks": "{count, plural, one {# fork} other {# forks}}",
+    "emptyTitle": "Proyectos próximamente",
+    "emptyDescription": "Estoy preparando esta sección. Mientras tanto podés ver mi trabajo en GitHub.",
+    "viewGithub": "Ver mi perfil de GitHub"
   }
 }

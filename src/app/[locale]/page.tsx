@@ -52,6 +52,7 @@ export default async function Home({
       </AboutSection>
       <ProjectsSection
         projects={projects.filter((project: Project) => project.featured)}
+        githubUrl={profile.links.github}
       />
       <StackSection stack={stackSource} />
       <TimelineSection entries={timeline.entries} />

@@ -20,7 +20,7 @@ export function ProjectsExplorer({
 }: {
   projects: Project[];
 }): JSX.Element {
-  const t: ReturnType<typeof useTranslations<"Projecs">> =
+  const t: ReturnType<typeof useTranslations<"Projects">> =
     useTranslations("Projects");
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const options: TechOption[] = useMemo(
