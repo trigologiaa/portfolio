@@ -140,3 +140,59 @@ describe("resolveProjects: GitHub fails", (): void => {
     ).rejects.toMatchObject({ kind: "not_configured" });
   });
 });
+
+describe("resolveProjects: nothing to show", (): void => {
+  const empty = {
+    getRepositories: async () => ({
+      ok: true as const,
+      data: [] as Repository[],
+    }),
+  };
+
+  it("uses the snapshot when the live list is empty", async (): Promise<void> => {
+    const data = await resolveProjects("en", deps({ ...empty }));
+    expect(data.source).toBe("fallback");
+    expect(slugs(data)).toEqual(["saved-a"]);
+  });
+
+  it("shows the empty state when both lists are empty, without throwing", async (): Promise<void> => {
+    const data = await resolveProjects(
+      "en",
+      deps({ ...empty, getFallbackRepositories: () => [] }),
+    );
+    expect(data).toEqual({ projects: [], source: "empty" });
+  });
+
+  it("shows the empty state when everything is hidden by the curation", async (): Promise<void> => {
+    const data = await resolveProjects(
+      "en",
+      deps({
+        getRepositories: async () => ({
+          ok: true,
+          data: [repo("fork", { isFork: true })],
+        }),
+        getFallbackRepositories: () => [],
+      }),
+    );
+    expect(data.source).toBe("empty");
+  });
+
+  it("keeps a repository that has no description (the card builds a summary)", async (): Promise<void> => {
+    const data = await resolveProjects(
+      "en",
+      deps({
+        getRepositories: async () => ({
+          ok: true,
+          data: [
+            makeRepo({
+              name: "no-description",
+              description: null,
+              hasReadme: true,
+            }),
+          ],
+        }),
+      }),
+    );
+    expect(slugs(data)).toEqual(["no-description"]);
+  });
+});
