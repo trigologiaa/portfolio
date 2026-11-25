@@ -86,5 +86,14 @@
     "emptyTitle": "Projects coming soon",
     "emptyDescription": "I am preparing this section. In the meantime you can see my work on GitHub.",
     "viewGithub": "See my GitHub profile"
+  },
+  "Contact": {
+    "title": "Contact",
+    "intro": "Do you have a project or an opportunity in mind? I would love to hear about it.",
+    "email": "Email",
+    "copy": "Copy email",
+    "copied": "Copied",
+    "copyFailed": "Press Ctrl+C (⌘C on Mac) to copy it",
+    "elsewhere": "Find me elsewhere"
   }
 }
