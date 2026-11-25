@@ -11,7 +11,9 @@ import { Header } from "@/components/layout/header";
 import { SkipLink } from "@/components/layout/skip-link";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
+import { getProfile, type Profile } from "@/lib/content";
 import { formatPageTitle, siteConfig } from "@/lib/site";
+import { socialLinks } from "@/lib/social-links";
 
 const geistSans: NextFontWithVariable = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +47,7 @@ export default async function LocaleLayout({
 }: LayoutProps<"/[locale]">): Promise<React.JSX.Element> {
   const { locale } = await params;
   const year: number = await getCurrentYear();
+  const profile: Profile = getProfile(locale);
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -58,7 +61,7 @@ export default async function LocaleLayout({
             <SkipLink />
             <Header />
             {children}
-            <Footer year={year} />
+            <Footer year={year} links={socialLinks(profile.links)} />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
